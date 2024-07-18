@@ -1,147 +1,26 @@
-.dashbordheadr {
-  height: 100px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  align-items: center;
-}
-
-.hedingDiv {
-  padding: 20px;
-  color: #5b549e;
-  margin-top: 20px;
-}
-
-.secondhedingcomntiner {
+.custome-cards-dashbord {
+  height: auto;
+  width: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   color: #5B549E;
+  margin-bottom: 10px;
 }
 
-.firstdiv {
-  width: 100%;
-  height: auto;
-  background: #f8f8ff;
-  padding: 20px;
-}
-
-.headrbtn {
-  height: 55px;
-  width: 313px;
-  background: #d9d9d9 !important;
-  border: 1px solid white !important;
-}
-
-.dashbordbtn {
-  width: 100%;
-  max-width: 300px;
-  height: 30px;
-  border-radius: 100px !important;
-  border: 1px solid #5b549e !important;
-  background: white !important;
-  color: #5b549e !important;
-}
-
-.infotext {
+.ineer-dashbord-div {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: #5b549e;
-  color: #d9d9d9;
-  height: auto;
-  width: 100%;
-  max-width: 642px;
-  font-size: 24px;
-  padding: 20px;
-  margin: 0 auto;
-  border-radius: 10px;
-}
-
-.dashbordcard {
-  height: 200px;
-  width: 100%;
-  max-width: 200px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  flex-direction: column;
-  color: #5b549e !important;
-}
-
-.centerdiv {
-  background-color: #5b549e;
-  height: 60px;
-  width: 56.36px;
-  color: white;
-  font-size: 25px;
-  border-radius: 15000px;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
-
-.dashbordcard-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Responsive design */
-@media (max-width: 992px) {
-
-  .firstdiv,
-  .dashbordcard-container {
+@media (max-width: 767px) {
+  .btn-group-wrapper {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
-  .dashbordbtn,
-  .infotext,
-  .dashbordcard {
-    width: 90%;
-    max-width: none;
-  }
-
-  .headrbtn {
+  .btn-group-wrapper .btn-group,
+  .btn-group-wrapper .btn {
     width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .dashbordbtn,
-  .infotext,
-  .dashbordcard {
-    width: 100%;
-  }
-
-  .infotext {
-    font-size: 20px;
-  }
-
-  .centerdiv {
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
-  }
-
-  .hedingDiv h1 {
-    font-size: 20px;
-  }
-
-  .dashbordbtn {
-    width: 80%;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-  }
-  .secondhedingcomntiner h1{
-    font-size: 30px;
+    margin-bottom: 10px;
   }
 }

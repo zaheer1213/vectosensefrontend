@@ -1,0 +1,22 @@
+.clients-table {
+    margin-top: 20px;
+}
+
+.clients-table thead th {
+    font-weight: bold;
+}
+
+.clients-table td {
+    vertical-align: middle;
+}
+
+.user-icons {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
