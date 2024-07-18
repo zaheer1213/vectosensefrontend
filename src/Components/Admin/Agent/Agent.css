@@ -1,0 +1,47 @@
+.agentsidebar {
+    width: auto;
+    background: #5B549E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    flex-direction: column;
+}
+
+.agentSeconddiv {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+@media (max-width : 576px) {
+    .agentsidebar {
+        background: #5B549E;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .agentSeconddiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .agentSeconddiv p {
+        margin-left: 80px;
+    }
+
+    .agentSeconddiv h1 {
+        margin-top: 100px !important;
+    }
+
+}

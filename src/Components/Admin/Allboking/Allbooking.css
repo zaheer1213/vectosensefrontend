@@ -1,0 +1,21 @@
+
+  
+  /* Style adjustments for smaller screens */
+  .tablerow{
+    font-size: 14px;
+  }
+  @media (max-width: 768px) {
+    .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .table th,
+    .table td {
+      white-space: nowrap;
+    }
+  
+    .container-center {
+      padding: 0 15px;
+    }
+  }
+  

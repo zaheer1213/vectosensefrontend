@@ -1,0 +1,94 @@
+.slider-container {
+    padding: 40px 0;
+    text-align: center;
+    /* Center align the content */
+}
+
+.card-wrapper {
+    position: relative;
+    transition: transform 0.5s, opacity 0.5s;
+    display: flex;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.custom-card {
+    border: none;
+    overflow: hidden;
+    border-radius: 10px;
+    background: white;
+    height: 517px;
+    width: 90%;
+    /* Increase the width of the card */
+    max-width: 600px;
+    /* Optional: Limit maximum width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 18.56px !important;
+    margin: auto;
+    /* Center the card */
+}
+
+.card-img {
+    height: 185px;
+    width: 278.44px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.card-title,
+.card-text {
+    font-size: 14px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.slick-center .card-wrapper {
+    transform: scale(1.0);
+    opacity: 1 !important;
+}
+
+.slick-slide {
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.slick-slide:not(.slick-center) .card-wrapper {
+    opacity: 0.25;
+}
+
+/* Media query to remove opacity effect on smaller screens */
+@media (max-width: 768px) {
+    .card-wrapper {
+        opacity: 1 !important;
+    }
+
+    .slick-slide:not(.slick-center) .card-wrapper {
+        opacity: 1 !important;
+    }
+}
+
+/* Adjust layout for screens 992px or less */
+@media (max-width: 992px) {
+    .slider-container {
+        width: 100%;
+    }
+
+    .slick-slide {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .custom-card {
+        width: 80%;
+        /* Adjust width for medium screens */
+        margin: auto;
+    }
+}
+
+@media (max-width :1440px) {
+    .card-title,
+    .card-text {
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,66 @@
+.perticualrservice {
+    /* FFDA91   FFFFFF */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    background-color: white;
+}
+
+.firstcol {
+    height: auto;
+    background-color: #f8f8ff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.underline {
+    height: 1px;
+    color: black;
+}
+
+.image-gallery-slide-wrapper .image-gallery-swipe {
+    height: 350px;
+    /* Adjust height as needed */
+    width: 100%;
+    /* Adjust width as needed */
+}
+
+.image-gallery-slide img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.image-gallery-thumbnail {
+    height: 100px;
+    /* Adjust thumbnail height as needed */
+}
+
+/* Remove forward and backward navigation icons */
+.image-gallery-icon {
+    display: none;
+}
+
+/* Optionally, you can style the gallery container */
+.image-gallery {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.secondcol {
+    display: flex;
+    justify-content: start;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.custom-button {
+    color: black;
+    border: 1px solid #5B549E;
+}
+
+.custom-button:hover {
+    border-color: #5B549E !important;
+    color: white;
+    background-color: #5B549E;
+}

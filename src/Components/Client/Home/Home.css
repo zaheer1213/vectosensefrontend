@@ -1,0 +1,53 @@
+.firstheding {
+    font-size: 45px;
+    /* Adjust font size for smaller screens */
+    font-weight: bold;
+    color: black;
+}
+
+.count {
+    font-size: 24px;
+    /* Adjust font size for smaller screens */
+    font-weight: bold;
+}
+
+.customeinput {
+    height: 50px;
+    /* Adjust input height */
+}
+
+@media (max-width: 768px) {
+    .firstheding {
+        font-size: 36px;
+        /* Adjust font size for extra small devices */
+    }
+
+    .count {
+        font-size: 20px;
+        /* Adjust font size for extra small devices */
+    }
+
+    .img-fluid {
+        height: auto;
+        /* Ensure image stays responsive */
+        max-width: 100%;
+        /* Ensure image does not exceed its container */
+    }
+
+    .paragraph {
+        font-size: 16px;
+        /* Adjust paragraph font size */
+    }
+
+    .input-group {
+        flex-direction: column;
+        /* Stack input and button vertically on small screens */
+    }
+
+    .btn {
+        width: 100%;
+        /* Make button full width on small screens */
+        margin-top: 10px;
+        /* Add space between input and button */
+    }
+}

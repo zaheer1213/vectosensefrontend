@@ -1,0 +1,185 @@
+.home-container {
+    padding: 20px 0;
+    background-color: white;
+}
+
+.carousel-item-content {
+    background: linear-gradient(to right, #ffffff, #fbe2ed);
+    border-radius: 50px;
+    padding: 20px;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.textdiv {
+    text-align: start;
+}
+
+.carousel-text {
+    color: black;
+    text-align: center;
+}
+
+.grow-text {
+    font-size: 238px;
+    font-weight: 100;
+}
+
+.business-text {
+    font-size: 70px;
+    font-weight: bold;
+    line-height: 1 !important;
+    margin-top: -40px !important;
+}
+
+.with-text {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.carousel-text span {
+    display: block;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.carousel-image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-image {
+    max-width: 100%;
+    height: 650px;
+    margin-top: 20px;
+}
+
+.radintbtn {
+    background: linear-gradient(to right, #e10e79, #5b549e) !important;
+    width: 193px;
+    height: 48px;
+    border-radius: 50px !important;
+    margin-top: 20px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1920px) {
+    .carousel-text .grow-text {
+        font-size: 180px;
+        /* Adjusted for 1920x1200 */
+    }
+
+    .carousel-text .business-text {
+        font-size: 70px;
+        /* Adjusted for 1920x1200 */
+    }
+
+    .carousel-text .with-text {
+        font-size: 40px;
+        /* Adjusted for 1920x1200 */
+    }
+
+    /* auto heigh */
+    /* .carousel-image {
+        max-width: 100%;
+        height: auto;
+        max-height: 650px;
+        margin-top: 20px;
+    } */
+}
+
+@media (max-width: 1200px) {
+    .carousel-text .grow-text {
+        font-size: 150px;
+    }
+
+    .carousel-text .business-text {
+        font-size: 70px;
+    }
+
+    .carousel-text .with-text {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .carousel-text .grow-text {
+        font-size: 120px;
+    }
+
+    .carousel-text .business-text {
+        font-size: 60px;
+    }
+
+    .carousel-text .with-text {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .carousel-text {
+        padding: 20px;
+    }
+
+    .carousel-text .grow-text {
+        font-size: 88px;
+        margin-bottom: 30px;
+    }
+
+    .carousel-text .business-text {
+        font-size: 50px;
+    }
+
+    .carousel-text .with-text {
+        font-size: 25px;
+    }
+
+    .carousel-image {
+        max-width: 300px;
+        height: auto;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .carousel-text {
+        padding: 10px;
+        font-size: 60px;
+    }
+
+    .grow-text {
+        font-size: 40px;
+        margin-bottom: 100px;
+    }
+
+    .carousel-text .business-text {
+        font-size: 40px;
+    }
+
+    .carousel-text .with-text {
+        font-size: 20px;
+    }
+
+    .carousel-image {
+        max-width: 250px;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .radintbtn {
+        margin: 10px auto;
+    }
+}

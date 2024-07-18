@@ -1,0 +1,142 @@
+.maincontainer {
+    background: linear-gradient(to right, #E8E9F4, #FFEED9);
+    padding: 20px;
+    height: 725.14px;
+}
+
+.Journry-Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.underline {
+    height: 1.86px;
+    width: 571.61px;
+    background: #3F3D58;
+    margin-top: -20px;
+
+}
+
+.journy-subdiv {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 421.42px;
+    width: 587.16px;
+
+}
+
+.Journry-Container h1 {
+    font-size: 220px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+
+.Journry-Container h3 {
+    font-size: 53px;
+    margin-bottom: 40px;
+}
+
+.buton {
+    height: 54.31px;
+    width: 300.94px;
+    border-radius: 68.62px !important;
+    background: #5B549E !important;
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .maincontainer {
+        height: auto;
+        min-height: 100vh;
+        /* Ensure the container takes the full height of the viewport */
+    }
+
+    .Journry-Container {
+        padding: 10px;
+        /* Reduce padding */
+    }
+
+    .image-container {
+        width: 100%;
+        /* Make the image container full width */
+    }
+
+    .journy-subdiv {
+        width: 100%;
+        justify-content: center;
+        /* Make the image full width */
+    }
+
+    .underline {
+        width: 100%;
+        /* Make the underline full width */
+    }
+
+    .Journry-Container h1 {
+        font-size: 120px;
+        /* Decrease font size for smaller screens */
+    }
+
+    .Journry-Container h3 {
+        font-size: 36px;
+        /* Decrease font size for smaller screens */
+        margin-bottom: 20px;
+        /* Reduce margin */
+    }
+
+    .buton {
+        width: 100%;
+        /* Make the button full width */
+    }
+}
+
+@media (max-width: 992px) {
+    .maincontainer {
+        padding: 10px;
+    }
+
+    .Journry-Container {
+        padding: 10px;
+    }
+
+    .Journry-Container h1 {
+        font-size: 120px;
+        margin-bottom: 10px;
+    }
+
+    .Journry-Container h3 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .buton {
+        width: 100%;
+        max-width: 300.94px;
+    }
+}
+
+@media (max-width: 768px) {
+    .maincontainer {
+        min-height: 100vh;
+        padding: 10px;
+    }
+
+    .Journry-Container h1 {
+        font-size: 80px;
+    }
+
+    .Journry-Container h3 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .buton {
+        width: 100%;
+        max-width: 250px;
+    }
+}

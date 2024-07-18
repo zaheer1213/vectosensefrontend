@@ -1,0 +1,70 @@
+.navbar {
+    padding: 10px 20px;
+    /* Adjust padding for navbar */
+}
+
+.navbar-brand .navbar-logo {
+    height: auto;
+    width: 180px;
+    /* Fixed width for logo */
+}
+
+.nav-link-custom,
+.nav-dropdown-custom {
+    color: black;
+    font-size: 16px !important;
+    margin: 0 15px;
+    font-weight: 400 !important;
+    text-decoration: none !important;
+}
+
+.nav-link-custom.active {
+    color: #007bff !important;
+    /* Change color of active link (like 'Login') */
+    font-weight: bold;
+    /* Optional: Increase font weight for active link */
+}
+
+.buttons {
+    height: 50px;
+    width: 130px;
+    border-radius: 25px !important;
+    background: #5b549e !important;
+}
+
+/* Media queries */
+@media (max-width: 992px) {
+    .navbar-brand .navbar-logo {
+        width: 150px;
+        /* Adjust logo width */
+    }
+
+    .nav-link-custom,
+    .nav-dropdown-custom {
+        font-size: 16px !important;
+        margin: 0 10px;
+    }
+
+    .buttons {
+        width: 110px;
+        /* Further reduce button width */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand .navbar-logo {
+        width: 120px;
+        /* Further reduce logo width */
+    }
+
+    .nav-link-custom,
+    .nav-dropdown-custom {
+        font-size: 14px !important;
+        margin: 0 5px;
+    }
+
+    .buttons {
+        width: 100px;
+        /* Further reduce button width */
+    }
+}

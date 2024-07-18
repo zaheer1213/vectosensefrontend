@@ -1,0 +1,31 @@
+.primary {
+    background: black !important;
+    color: white !important;
+    border-radius: 79px !important;
+}
+
+/* Increase navbar height */
+.navbar {
+    height: 80px;
+    /* Adjust this value as needed */
+}
+
+/* Make text color extra white */
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-dark .navbar-brand {
+    color: #ffffff !important;
+}
+
+/* Ensure button stands out */
+.navbar .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.navbar .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}

@@ -1,0 +1,26 @@
+.hedingcol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tablecol {
+    background: white;
+    padding: 20px;
+}
+
+.customerstable {
+    padding: 20px;
+    background: white;
+}
+.logoimg{
+    height: 39px;
+    width: 39px;
+    border-radius: 50%;
+}
+.customertablerow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}

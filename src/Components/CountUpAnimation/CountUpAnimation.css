@@ -1,0 +1,108 @@
+.count-up-animation {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+}
+
+.clients-count {
+    font-size: 71.74px;
+    font-weight: bold;
+}
+
+.services-count {
+    font-size: 71.74px;
+    font-weight: bold;
+}
+
+.team-members-count {
+    font-size: 71.74px;
+    font-weight: bold;
+}
+
+.counter {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping of columns */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 196px;
+    background: linear-gradient(to right, #642A9B, #201E38);
+    border-radius: 40px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.plus-sign {
+    font-size: 71.74px;
+    margin-left: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.counterpluse {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.counttext {
+    color: white;
+    font-size: 19.73px;
+    font-weight: bold;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .counter {
+        flex-direction: row;
+        /* Ensure row direction */
+        height: auto;
+        padding: 10px;
+    }
+
+    .count-up-animation {
+        font-size: 24px;
+    }
+
+    .plus-sign {
+        font-size: 30px;
+    }
+
+    .counttext {
+        font-size: 16px;
+    }
+
+    .counter>div {
+        width: 50%;
+        /* Ensure two items per row */
+        margin-bottom: 20px;
+        /* Space between rows */
+    }
+}
+
+@media (max-width: 576px) {
+    .counter {
+        padding: 5px;
+    }
+
+    .count-up-animation {
+        font-size: 20px;
+    }
+
+    .plus-sign {
+        font-size: 24px;
+    }
+
+    .counttext {
+        font-size: 14px;
+    }
+
+    .counter>div {
+        width: 50%;
+        /* Ensure two items per row */
+        margin-bottom: 10px;
+        /* Space between rows */
+    }
+}

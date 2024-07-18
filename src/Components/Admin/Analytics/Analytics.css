@@ -1,0 +1,57 @@
+.card-main {
+    max-width: 18rem;
+    /* Changed to max-width for responsiveness */
+    /* height: 167px; */
+    /* Consider removing fixed height for responsiveness */
+    align-items: center;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mainconatiner {
+    background: #F8F8FF;
+    padding: 20px;
+    /* height: auto; */
+    /* Adjust as needed */
+    height: 100%;
+    /* Alternatively, set height to 100% to fill parent container */
+}
+
+.secondDiv {
+    /* height: 400px; */
+    /* Consider using responsive units or removing fixed height */
+    width: 100%;
+    /* Adjust to full width */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.dropwonlist {
+    background-color: white !important;
+    color: black !important;
+    border: none !important;
+}
+
+.rangecolor {
+    background: #5B549E !important;
+    color: #5B549E !important;
+}
+
+@media (max-width: 768px) {
+    .card-main {
+        max-width: 100%;
+        /* Adjust for full width on smaller screens */
+        margin-bottom: 15px;
+        /* Add spacing between cards */
+    }
+
+    .secondDiv {
+        /* Adjust styles for smaller screens if necessary */
+    }
+}

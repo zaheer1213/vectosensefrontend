@@ -1,0 +1,208 @@
+/* General Styles */
+body {
+    margin-top: 20px;
+}
+
+.custom-toggle-btn {
+    background-color: white !important;
+    color: black !important;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-weight: bold !important;
+}
+
+.custom-toggle-btn:hover {
+    background-color: darkgray;
+    color: black;
+}
+
+.custom-toggle-btn:checked,
+.custom-toggle-btn.active {
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+
+.custom-toggle-btn:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.price_plan_area {
+    position: relative;
+    z-index: 1;
+    background-color: #FFFFFF;
+    padding: 2rem 0;
+}
+
+.single_price_plan {
+    position: relative;
+    z-index: 1;
+    border-radius: 0.5rem 0.5rem 0 0;
+    transition-duration: 500ms;
+    margin-bottom: 50px;
+    background-color: #ffffff;
+    padding: 3rem 4rem;
+}
+
+.single_price_plan::after {
+    position: absolute;
+    content: "";
+    background-image: url("https://bootdey.com/img/half-circle-pricing.png");
+    background-repeat: repeat;
+    width: 100%;
+    height: 17px;
+    bottom: -17px;
+    z-index: 1;
+    left: 0;
+}
+
+.single_price_plan .title {
+    text-transform: capitalize;
+    transition-duration: 500ms;
+    margin-bottom: 2rem;
+}
+
+.single_price_plan .title span {
+    color: #ffffff;
+    padding: 0.2rem 0.6rem;
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: #2ecc71;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.single_price_plan .title h3 {
+    font-size: 1.25rem;
+}
+
+.single_price_plan .title p {
+    font-weight: 300;
+    line-height: 1;
+    font-size: 14px;
+}
+
+.single_price_plan .title .line {
+    width: 80px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: #3f43fd;
+}
+
+.single_price_plan .price {
+    margin-bottom: 1.5rem;
+}
+
+.single_price_plan .price h4 {
+    position: relative;
+    z-index: 1;
+    font-size: 2.4rem;
+    line-height: 1;
+    margin-bottom: 0;
+    color: black !important;
+    display: inline-block;
+}
+
+.single_price_plan .price span {
+    font-size: 19.01px;
+    font-weight: bold;
+}
+
+.single_price_plan .description {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.single_price_plan .description p {
+    line-height: 16px;
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.single_price_plan .description p i {
+    color: #2ecc71;
+    margin-right: 0.5rem;
+}
+
+.single_price_plan .description p .lni-close {
+    color: #e74c3c;
+}
+
+.single_price_plan.active,
+.single_price_plan:hover,
+.single_price_plan:focus {
+    box-shadow: 0 10px 70px 12px rgba(21, 131, 233, 0.2);
+}
+
+.single_price_plan .side-shape img {
+    position: absolute;
+    width: auto;
+    top: 0;
+    right: 0;
+    z-index: -2;
+}
+
+.section-heading h3 {
+    margin-bottom: 1rem;
+    font-size: 76.02px;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+.section-heading h6 {
+    font-size: 28.51px;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.section-heading p {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+.section-heading .line {
+    width: 120px;
+    height: 5px;
+    margin: 30px auto 0;
+    border-radius: 6px;
+    background: #2d2ed4;
+    background: linear-gradient(to right, #e24997, #2d2ed4);
+}
+
+@media (max-width: 1199px) {
+    .single_price_plan {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .single_price_plan {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .single_price_plan {
+        padding: 1.5rem;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .single_price_plan {
+        padding: 1rem;
+        width: 90%;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        border: 1px solid;
+    }
+
+    .section-heading h3 {
+        font-size: 60px;
+    }
+}

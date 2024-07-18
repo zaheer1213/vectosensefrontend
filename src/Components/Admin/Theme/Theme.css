@@ -1,0 +1,32 @@
+.cardimages {
+    height: 137px;
+    width: 275px;
+}
+
+.theme-container {
+    padding: 20px;
+}
+
+.textcolor {
+    color: #5B549E !important;
+
+}
+
+.underline {
+    height: 1px !important;
+    width: 100% !important;
+    background-color: #ccc;
+    /* Adjust the color as needed */
+}
+
+.theme-card {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.cardimages {
+    height: 200px;
+    /* Adjust the height as needed */
+    object-fit: cover;
+    /* Ensures the image covers the entire area */
+}

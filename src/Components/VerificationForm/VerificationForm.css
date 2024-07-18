@@ -1,0 +1,69 @@
+/* General styles for centering and spacing */
+.login-image-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-form-container {
+    max-width: 400px;
+    width: 100%;
+}
+
+.verify-heading {
+    font-size: 1.5rem;
+}
+
+.cutomebutton {
+    background-color: #5b549e;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+}
+
+/* Styles for OTP input fields */
+.otp-input-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.otp-input-container input {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .login-image-col{
+        height: auto;
+    }
+    .login-form-container {
+        padding: 1rem;
+    }
+
+    .otp-input-container input {
+        width: 30px;
+        /* Adjust width for smaller screens */
+        height: 30px;
+        /* Adjust height for smaller screens */
+        font-size: 16px;
+        /* Adjust font size for smaller screens */
+    }
+    .otp-input-container{
+        height: 30px;
+        width: 10px;
+    }
+}

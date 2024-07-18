@@ -1,0 +1,17 @@
+.our-team-container {
+    padding: 50px 0;
+    background: black;
+}
+
+.social-icons a {
+    color: white;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}
+.teamcard{
+    background-color: black;
+    color: white;
+}

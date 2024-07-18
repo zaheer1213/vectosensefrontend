@@ -1,0 +1,345 @@
+.slider-container {
+    margin: 50px auto;
+    width: 80%;
+}
+
+.girlimg {
+    position: absolute;
+    right: 950px;
+    height: 500px;
+    width: 500px;
+    bottom: 0px;
+}
+
+.mainimg {
+    height: 294.67px;
+    width: 100%;
+    max-width: 387px;
+}
+
+.maindivbg {
+    background: linear-gradient(to right, #63299A, #D369E5);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.slick-slide {
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.card-wrapper {
+    display: flex !important;
+    justify-content: center;
+}
+
+.custom-card {
+    width: 500px;
+    text-align: center;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 530px !important;
+}
+
+.card-img {
+    height: 185.63px;
+    width: 100%;
+    max-width: 278.44px;
+    padding: 10px;
+    padding-top: 30px;
+}
+
+.custom-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.slick-center .card-wrapper {
+    transform: scale(1.0);
+    opacity: 1 !important;
+}
+
+.slick-prev, .slick-next {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    z-index: 1;
+    border: 1px solid black;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 20px;
+    color: black;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: #f0f0f0;
+    color: black;
+}
+
+.slick-prev {
+    left: -50px;
+}
+
+.slick-next {
+    right: -50px;
+}
+
+.center .slick-center .custom-card {
+    transform: scale(1.08);
+    transition: all 0.3s ease;
+}
+
+.firstheding {
+    font-size: 195.47px;
+    font-weight: 200;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.secondheding {
+    font-size: 96.52px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.thirdheding {
+    font-size: 57px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width : 1440px) {
+
+    .mainimg {
+        height: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1366px) {
+    .girlimg {
+        bottom: 0px;
+        right: 674px;
+        height: 350px;
+        width: 350px;
+    }
+
+    .mainimg {
+        height: 200.67px;
+        width: 90%;
+        max-width: 387px;
+    }
+
+    .custom-card {
+        width: 450px;
+        height: auto;
+        /* Adjust height if needed */
+    }
+}
+
+@media (max-width: 1200px) {
+    .girlimg {
+        bottom: 0px;
+        right: 547px;
+        height: 466px;
+        width: 450px;
+    }
+}
+
+@media (max-width: 992px) {
+    .girlimg {
+        bottom: 0px;
+        right: 385px;
+        height: 424px;
+        width: 424px;
+    }
+}
+
+@media (max-width :1600px) {
+    .girlimg {
+        position: absolute;
+        right: 687px;
+        height: 350px;
+        width: 350px;
+        bottom: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .girlimg {
+        right: 700px;
+        height: 400px;
+        width: 400px;
+        bottom: 0px;
+    }
+
+    .slider-container {
+        width: 90%;
+    }
+
+    .custom-card {
+        width: 250px;
+        height: 600px;
+        /* Adjusted height for smaller screens */
+    }
+
+    .slick-prev, .slick-next {
+        width: 30px;
+        height: 30px;
+    }
+
+    .slick-prev {
+        left: -40px;
+    }
+
+    .slick-next {
+        right: -40px;
+    }
+
+    .counter {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .count-up-animation {
+        font-size: 24px;
+    }
+
+    .plus-sign {
+        font-size: 30px;
+    }
+
+    .counttext {
+        font-size: 16px;
+    }
+
+    .maindivbg {
+        height: auto;
+        padding: 20px;
+    }
+
+    .maindivbg img.girlimg {
+        display: none;
+    }
+
+    .maindivbg h1 {
+        font-size: 50px;
+    }
+
+    .text-center h1 {
+        font-size: 80px;
+    }
+
+    .justify-content-center {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .custom-card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .slider-container {
+        width: 100%;
+    }
+
+    .custom-card {
+        width: 300px;
+        height: 700px;
+        /* Adjusted height for smaller screens */
+    }
+
+    .slick-prev, .slick-next {
+        width: 25px;
+        height: 25px;
+    }
+
+    .slick-prev {
+        left: -25px;
+    }
+
+    .slick-next {
+        right: -25px;
+    }
+
+    .counter {
+        padding: 5px;
+    }
+
+    .count-up-animation {
+        font-size: 20px;
+    }
+
+    .plus-sign {
+        font-size: 24px;
+    }
+
+    .counttext {
+        font-size: 14px;
+    }
+
+    .maindivbg img {
+        width: 70%;
+        height: auto;
+        margin-top: 50px;
+    }
+
+    .maindivbg h1 {
+        font-size: 40px;
+    }
+
+    .text-center h1 {
+        font-size: 60px;
+    }
+
+    .text-center h1:last-child {
+        font-size: 40px;
+    }
+
+    .justify-content-center {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .custom-card {
+        margin-bottom: 20px;
+    }
+
+    .girlimg {
+        display: none;
+        /* Hide on small screens */
+    }
+}

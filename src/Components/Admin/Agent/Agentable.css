@@ -1,0 +1,18 @@
+/* .container-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    text-align: start;
+} */
+
+.table-heading {
+    font-size: 1.5rem;
+    color: #5B549E;
+}
+
+.table-header {
+    background: #0056b3 !important;
+    color: white;
+}

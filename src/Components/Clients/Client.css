@@ -1,0 +1,188 @@
+/* Main container styling */
+.main-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+/* Glass effect container */
+.glass-container {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 75px;
+    padding: 40px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Circle styles */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.top-left-circle {
+    width: 500px;
+    height: 500px;
+    background-color: #f093ff;
+    top: 20px;
+    left: -60px;
+}
+
+.bottom-right-circle {
+    width: 500px;
+    height: 500px;
+    background-color: #ffcd93;
+    bottom: 20px;
+    right: -20px;
+}
+
+/* Client card styling */
+.clinetcards {
+    width: 100%;
+    color: black;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.client-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.hedingdiv h1 {
+    font-size: 256.88px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hedingdiv h2 {
+    font-size: 73.39px;
+    margin-bottom: 40px;
+}
+
+.clinetimg {
+    height: 300px;
+    width: 450px;
+    margin-bottom: 50px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width : 1440px) {
+    .client-img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .glass-container {
+        padding: 30px;
+    }
+
+    .clinetimg {
+        height: 250px;
+        width: 375px;
+    }
+
+    .client-info h4 {
+        font-size: 1rem !important;
+    }
+    .client-info small{
+        font-size: 12px !important;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .glass-container {
+        padding: 20px;
+    }
+
+    .clinetimg {
+        height: 200px;
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .glass-container {
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 50px;
+    }
+
+    .top-left-circle,
+    .bottom-right-circle {
+        width: 250px;
+        height: 250px;
+    }
+
+    .top-left-circle {
+        top: -50px;
+        left: -100px;
+    }
+
+    .bottom-right-circle {
+        bottom: -50px;
+        right: -100px;
+    }
+
+    .hedingdiv h1 {
+        font-size: 60px;
+        text-align: center;
+    }
+
+    .hedingdiv h2 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col {
+        margin-bottom: 20px;
+    }
+
+    .clinetcards {
+        margin: 0 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .main-container {
+        height: auto;
+    }
+
+    .clinetimg {
+        height: 156px;
+        width: 221px;
+        margin-bottom: 50px;
+        margin-top: 20px;
+    }
+}

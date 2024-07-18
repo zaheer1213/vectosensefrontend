@@ -1,0 +1,123 @@
+.ThemeCreateionForm {
+    width: 100%;
+    padding: 0 15px;
+    /* Add padding to ensure content doesn't touch the edges */
+}
+
+.themeheding {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.formimg {
+    width: 100%;
+    height: 253px;
+    max-width: 530px;
+}
+
+.thmebtn {
+    height: 55px;
+    width: 313px;
+    max-width: 313px !important;
+    background: #d9d9d9 !important;
+    border: 1px solid white !important;
+}
+
+.forminfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.formbtn {
+    width: 100%;
+    max-width: 200px;
+    background: #5B549E !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    height: 48px !important;
+    border-radius: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.cutomebtn {
+    height: 30px;
+    width: 90px;
+    border-radius: 50px;
+    color: #5B549E;
+    border: 1px solid #5B549E;
+}
+
+.custom-table {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 716px;
+    border-collapse: collapse;
+}
+
+.custom-table th {
+    background-color: #5B549E;
+    color: white;
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.custom-table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.formimg {
+    width: 100%;
+    height: auto;
+}
+
+.footerbtn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    .formimg {
+        width: 100%;
+        height: auto;
+    }
+
+    .thmebtn {
+        width: 200px;
+    }
+
+    .formbtn {
+        width: 100%;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cutomebtn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .custom-table {
+        width: 100%;
+    }
+
+}

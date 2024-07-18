@@ -1,0 +1,160 @@
+.agentCol {
+    height: auto;
+    background: linear-gradient(to right, #5b549e, #201e38);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.starDiv{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.no-padding {
+    padding: 0 !important;
+}
+
+.full-height {
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.inputheight {
+    height: 45px;
+}
+
+.bordered-input {
+    border-right: 0;
+}
+
+.agent-login-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.loginheding {
+    font-size: 50px;
+}
+
+.cutomebutton {
+    background-color: #5b549e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.cutomebutton1 {
+    background-color: black !important;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    height: 48px;
+    width: 374px;
+}
+
+.create-account {
+    color: #5b549e;
+    text-decoration: underline;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.me-3 {
+    margin-right: 1rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 3rem !important;
+}
+
+.px-xl-3 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+.reviewdiv {
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .agentCol {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .agent-login-image {
+        height: auto;
+    }
+
+    .cutomebutton1 {
+        width: 100%;
+    }
+
+    .loginheding {
+        font-size: 30px;
+    }
+
+    .full-height {
+        height: auto;
+    }
+
+    .reviewdiv {
+        text-align: center;
+        align-items: center;
+    }
+
+    .cutomebutton {
+        width: 100%;
+    }
+    .starDiv{
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .loginheding {
+        font-size: 25px;
+    }
+
+    .agentCol {
+        padding: 10px;
+    }
+
+    .cutomebutton1, .cutomebutton {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .agent-login-image {
+        max-width: 80%;
+    }
+    .reviewdiv {
+        text-align: center;
+        align-items: center;
+    }
+}
