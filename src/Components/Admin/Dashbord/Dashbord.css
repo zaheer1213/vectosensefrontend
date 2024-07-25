@@ -12,6 +12,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.tableHading {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
 @media (max-width: 767px) {
   .btn-group-wrapper {
     flex-direction: column;

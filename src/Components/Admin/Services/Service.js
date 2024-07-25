@@ -122,7 +122,7 @@ const Service = () => {
     // if (!openingTime) newErrors.openingTime = "Opening Time is required";
     // if (!closingTime) newErrors.closingTime = "Closing Time is required";
     if (!price) newErrors.price = "Price is required";
-    if (!tags.length) newErrors.tags = "Tags are required";
+    // if (!tags.length) newErrors.tags = "Tags are required";
     // if (!file) newErrors.file = "Service Image is required";
 
     if (days.length === 0) {
@@ -303,13 +303,13 @@ const Service = () => {
       return;
     }
 
-    // Validation for duplicate days with same opening and closing times
+    // Validation for duplicate days with the same opening and closing times
     const hasDuplicates = selectedDays.some((day) =>
       days.some(
         (d) =>
           d.day === day &&
-          d.opening_time === openingTime &&
-          d.closing_time === closingTime
+          d.opening_time === moment(openingTime, "HH:mm").format("hh:mm A") &&
+          d.closing_time === moment(closingTime, "HH:mm").format("hh:mm A")
       )
     );
 
@@ -329,8 +329,9 @@ const Service = () => {
       opening_time: formattedOpeningTime,
       closing_time: formattedClosingTime,
     }));
+
     setDays((prevDays) => [...prevDays, ...newDays]);
-    setSelectedDays([]);
+    // Do not reset selectedDays, openingTime, or closingTime
   };
   const handleRemoveDay = (index) => {
     setDays((prevDays) => prevDays.filter((_, i) => i !== index));
@@ -524,7 +525,7 @@ const Service = () => {
                       <Form.Group className="mb-3" controlId="formPrice">
                         <Form.Label>Price/Hour</Form.Label>
                         <Form.Control
-                          type="text"
+                          type="number"
                           placeholder="250"
                           value={price}
                           onChange={(e) => setPrice(e.target.value)}

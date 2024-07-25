@@ -15,11 +15,15 @@ import CanvasJSReact from "@canvasjs/react-charts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import Chart from "react-apexcharts";
+import axios from "axios";
+import { BASEURL } from "../../Commanconstans/Comman";
+import { useNavigate } from "react-router-dom";
 
 const Dashbord = () => {
   const MIN = 0;
   const MAX = 100;
 
+  const navigate = useNavigate();
   var CanvasJS = CanvasJSReact.CanvasJS;
   var CanvasJSChart = CanvasJSReact.CanvasJSChart;
   const [startTime, setStartTime] = useState(0);
@@ -31,6 +35,9 @@ const Dashbord = () => {
   const [referral, setReferral] = useState(50);
   const [socialMedia, setSocialMedia] = useState(30);
   const [twitter, setTwitter] = useState(20);
+  const [dashbordData, setDashbordData] = useState({});
+  const [transactionData, setTransctionData] = useState([]);
+  const [servicesData, setServicesData] = useState([]);
 
   const transction = [
     {
@@ -116,11 +123,11 @@ const Dashbord = () => {
   const series = [44, 55, 67, 83];
   const getStatusVariant = (status) => {
     switch (status) {
-      case "complete":
+      case "COMPLETE":
         return { bg: "success", text: "dark" };
-      case "pending":
+      case "PENDING":
         return { bg: "warning", text: "dark" };
-      case "cancel":
+      case "CANCEL":
         return { bg: "danger", text: "dark" };
       default:
         return { bg: "secondary", text: "dark" };
@@ -161,6 +168,60 @@ const Dashbord = () => {
     },
     data: data,
   };
+
+  const getDashbordData = async () => {
+    const token = localStorage.getItem("admin-token");
+    const headers = {
+      "x-access-token": token,
+    };
+    await axios
+      .get(`${BASEURL}/service-provider/dashboard-api`, { headers })
+      .then((responce) => {
+        if (responce.data) {
+          setDashbordData(responce.data.data);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getTransctionData = async () => {
+    const token = localStorage.getItem("admin-token");
+    const headers = {
+      "x-access-token": token,
+    };
+    await axios
+      .get(`${BASEURL}/service-provider/transaction-api`, { headers })
+      .then((responce) => {
+        if (responce.data) {
+          setTransctionData(responce.data.data);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+  const getServicesInfo = async () => {
+    const token = localStorage.getItem("admin-token");
+    const headers = {
+      "x-access-token": token,
+    };
+    await axios
+      .get(`${BASEURL}/service-provider/service-revenue`, { headers })
+      .then((responce) => {
+        setServicesData(responce.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+  const moveTransctionpage = () => {
+    navigate("/history");
+  };
+  const moveServicesPage = () => {
+    navigate("/servicetable");
+    window.scroll(0, 0);
+  };
+  useEffect(() => {
+    getDashbordData();
+    getTransctionData();
+    getServicesInfo();
+  }, []);
   return (
     <>
       <Container fluid>
@@ -180,29 +241,42 @@ const Dashbord = () => {
                   <div className="custome-cards-dashbord bg-filler">
                     <strong>TOTAL PROFIT</strong>
                     <div className="ineer-dashbord-div">
-                      $12,426
-                      <div>+ 36%</div>
+                      <h4>${dashbordData?.total_profit}</h4>
+                      {/* <div>+ 36%</div> */}
                     </div>
                   </div>
                 </Col>
                 <Col md={3}>
                   <div className="custome-cards-dashbord bg-filler text-center">
                     <strong>Total Services</strong>
-                    <h1 className="text-center">100</h1>
+                    <h1 className="text-center">
+                      {dashbordData?.service_count
+                        ? dashbordData?.service_count
+                        : "0"}
+                    </h1>
                   </div>
                 </Col>
                 <Col md={3}>
                   <div className="custome-cards-dashbord bg-filler text-center">
                     <strong>Total Agents</strong>
-                    <h1 className="text-center">150</h1>
+                    <h1 className="text-center">
+                      {dashbordData?.agent_count
+                        ? dashbordData?.agent_count
+                        : "0"}
+                    </h1>
                   </div>
                 </Col>
                 <Col md={3}>
                   <div className="custome-cards-dashbord bg-filler">
-                    <strong>per annum profit</strong>
+                    <strong>Total Booking</strong>
                     <div className="ineer-dashbord-div">
-                      $2,38,485
-                      <div>+ 56%</div>
+                      <h4>
+                        {" "}
+                        {dashbordData?.booking_count
+                          ? dashbordData?.booking_count
+                          : "0"}
+                      </h4>
+                      {/* <div>+ 56%</div> */}
                     </div>
                   </div>
                 </Col>
@@ -216,53 +290,57 @@ const Dashbord = () => {
                     height="350"
                   />
                 </Col>
-                <Col md={4}>
-                  <strong>Recent Transactions</strong>
-                  <Table className="mt-3">
+                <Col md={8}>
+                  <div className="tableHading">
+                    <strong>Recent Transactions</strong>
+                    <div
+                      style={{ color: "blue" }}
+                      onClick={moveTransctionpage}
+                      className="pointer"
+                    >
+                      See All Transactions &nbsp;{" "}
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </div>
+                  </div>
+                  <Table responsive>
+                    <thead className="mt-3">
+                      <th>Transaction Status</th>
+                      <th>Name</th>
+                      <th>Payment Type</th>
+                      <th>Price</th>
+                      <th>Date</th>
+                    </thead>
                     <tbody>
-                      {transction.map((transition) => (
-                        <tr key={transition.id}>
-                          <td className="text-center">
-                            <Badge
-                              bg={getStatusVariant(transition.status).bg}
-                              text={getStatusVariant(transition.status).text}
-                            >
-                              . {transition.status}
-                            </Badge>
-                          </td>
-                          <td>{transition.name}</td>
-                        </tr>
-                      ))}
+                      {transactionData && transactionData.length > 0 ? (
+                        transactionData.slice(0, 4).map((transaction) => (
+                          <tr key={transaction.id}>
+                            <td>
+                              <Badge
+                                bg={
+                                  getStatusVariant(transaction.payment_status)
+                                    .bg
+                                }
+                                text={
+                                  getStatusVariant(transaction.payment_status)
+                                    .text
+                                }
+                              >
+                                {transaction.payment_status}
+                              </Badge>
+                            </td>
+                            <td>{transaction.name ? transaction.name : "-"}</td>
+                            <td>{transaction.payment_method}</td>
+                            <td>${transaction.total_amount}</td>
+                            <td>{transaction.due_date}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <td className="text-center" colSpan={5}>
+                          No Data Found
+                        </td>
+                      )}
                     </tbody>
                   </Table>
-                </Col>
-                <Col md={4}>
-                  <div className="pointer text-end">
-                    See All Transactions &nbsp;{" "}
-                    <FontAwesomeIcon icon={faChevronRight} />
-                    <Table>
-                      <tbody>
-                        {transction.map((transition) => (
-                          <tr key={transition.id}>
-                            <td className="text-center">
-                              {transition.cardName}
-                              <br />
-                              {transition.paymentType}
-                            </td>
-                            <td className="text-center">
-                              {transition.price}
-                              <br />
-                              {transition.date}
-                            </td>
-                            <td className="text-center"></td>
-                            <td className="text-center">
-                              <FontAwesomeIcon icon={faEllipsis} />
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                  </div>
                 </Col>
               </Row>
               <Row className="py-5 mt-3">
@@ -300,67 +378,64 @@ const Dashbord = () => {
                   <Button style={{ background: "#5B549E" }}>Download</Button>
                 </Col>
                 <CanvasJSChart options={options1} />
-                {/* <span id="timeToRender" style={spanStyle}>
-                  {timeToRender}
-                </span> */}
               </Row>
               <Row>
                 <div className="customerstable">
-                  <h4 className="">Services</h4>
                   <Container>
                     <Row>
                       <Col md={6}>
-                        <div className="customertablerow">
-                          <img src="images/customer.png" className="logoimg" />
-                          <div>
-                            <strong>Jenny Wilson</strong> <br />
-                          </div>
-                          <div>
-                            <strong>$11,234</strong> <br />
-                          </div>
+                        <div className="tableHading">
+                          <h4 className="">Services</h4>
+                          <strong
+                            className="pointer"
+                            onClick={moveServicesPage}
+                          >
+                            See All Services >
+                          </strong>
                         </div>
-                        <div className="customertablerow">
-                          <img src="images/customer2.png" className="logoimg" />
-                          <div>
-                            <strong>Devon Lane</strong> <br />
-                          </div>
-                          <div>
-                            <strong>$10,483</strong> <br />
-                          </div>
-                        </div>
-                        <div className="customertablerow">
-                          <img src="images/customer2.png" className="logoimg" />
-                          <div>
-                            <strong>Jane Cooper</strong> <br />
-                          </div>
-                          <div>
-                            <strong>$9,084</strong> <br />
-                          </div>
-                        </div>
-                        <div className="customertablerow">
-                          <img src="images/customer2.png" className="logoimg" />
-                          <div>
-                            <strong>Jane Cooper</strong> <br />
-                          </div>
-                          <div>
-                            <strong>$9,084</strong> <br />
-                          </div>
-                        </div>
-                        <div className="customertablerow">
-                          <img src="images/customer.png" className="logoimg" />
-                          <div>
-                            <strong>Jenny Wilson</strong> <br />
-                          </div>
-                          <div>
-                            <strong>$11,234</strong> <br />
-                          </div>
-                        </div>
-                        <div className="mt-3">
-                          <h6 className="text-center pointer">
-                            {" "}
-                            See More Services
-                          </h6>
-                        </div>
+                        <Table responsive>
+                          <thead>
+                            <th>Logo</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                          </thead>
+                          <tbody>
+                            {servicesData && servicesData.length > 0 ? (
+                              servicesData.slice(0, 4).map((row, index) => {
+                                return (
+                                  <tr key={index}>
+                                    <td>
+                                      <img
+                                        src="images/customer.png"
+                                        className="logoimg"
+                                        alt="Customer Logo"
+                                      />
+                                    </td>
+                                    <td>
+                                      <strong>
+                                        {row.service__name
+                                          ? row.service__name
+                                          : "-"}
+                                      </strong>
+                                    </td>
+                                    <td>
+                                      <strong>
+                                        $
+                                        {row.total_revenue
+                                          ? row.total_revenue
+                                          : "-"}
+                                      </strong>
+                                    </td>
+                                  </tr>
+                                );
+                              })
+                            ) : (
+                              <td className="text-center" colSpan={3}>
+                                No Data Found
+                              </td>
+                            )}
+                          </tbody>
+                        </Table>
                       </Col>
                       <Col md={6}>
                         <Row>

@@ -2,7 +2,6 @@ import React from "react";
 import CountUpAnimation from "./CountUpAnimation";
 import "./CountUpAnimation.css";
 import { Col, Container, Row } from "react-bootstrap";
-import Features from "../Features/Features";
 
 const Count = () => {
   return (
@@ -61,7 +60,6 @@ const Count = () => {
           </Row>
         </Container>
       </Container>
-      <Features />
     </>
   );
 };

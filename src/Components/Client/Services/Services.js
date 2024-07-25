@@ -5,7 +5,7 @@ import { BASEURL } from "../../Commanconstans/Comman";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Footer/Footer";
-import { Container } from "react-bootstrap";
+import { Col, Container } from "react-bootstrap";
 import ServicesCarousel from "../ServicesCarousel/ServicesCarousel";
 import Pagination from "@mui/material/Pagination";
 
@@ -79,9 +79,26 @@ const Services = ({ search }) => {
   return (
     <>
       {loading ? <Loader /> : ""}
-      <Container  className="">
+      <Container className="">
         <div className="container py-5">
-          <h3 className="mt-3">Services</h3>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <h3 className="mt-3">Services</h3>
+            <Col md={4}>
+              <div className="flex-grow-1 me-2">
+                {/* <input
+                  type="search"
+                  className="form-control  search-input"
+                  placeholder="Enter Service Name..."
+                /> */}
+              </div>
+            </Col>
+          </div>
           <hr />
           {allservicedata && allservicedata.length > 0 ? (
             <>
@@ -153,7 +170,7 @@ const Services = ({ search }) => {
                                     opacity: "1px",
                                   }}
                                 >
-                                   {item}
+                                  {item}
                                 </button>
                               );
                             })}

@@ -1,23 +1,26 @@
 import {
-  faCalendarDays,
   faGift,
   faGlobe,
-  faLock,
   faMedal,
   faToolbox,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Count from "../CountUpAnimation/Count";
 
 function Information() {
   return (
     <>
       <Container fluid className="py-5">
         <Container>
-          <div className="abouttext" style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <div
+            className="abouttext"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <h1 className="about-heading ">Our</h1>
             <h2 className="about-subheading ">Services</h2>
           </div>
@@ -41,9 +44,6 @@ function Information() {
                     clients. Whether you’re looking for top-notch home
                     maintenance, personalized gym and fitness programs, or any
                     other specialized service.
-                    {/* , we’ve got you covered. Explore
-                    our full range of services to see how we can help you
-                    achieve your goals and improve your daily life. */}
                   </p>
                 </div>
               </Col>
@@ -118,7 +118,6 @@ function Information() {
           </Row>
         </Container>
       </Container>
-      <Count />
     </>
   );
 }

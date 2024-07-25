@@ -17,8 +17,6 @@ import {
   faEnvelope,
   faEye,
   faEyeSlash,
-  faLock,
-  faPhone,
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

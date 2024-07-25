@@ -57,7 +57,7 @@ const AllServies = () => {
                       <div className="category-card">
                         <img
                           className="category-card-img-top"
-                          src="images/1678864013225-bfc1de.jpeg.svg"
+                          src="images/WomenSalon.svg"
                           alt="Women's Salon"
                         />
                         <div className="card-body mt-3">
@@ -69,7 +69,7 @@ const AllServies = () => {
                       <div className="category-card">
                         <img
                           className="category-card-img-top"
-                          src="images/img-1.svg"
+                          src="images/MenSalon.svg"
                           alt="Men's Salon & Massage"
                         />
                         <div className="card-body mt-3">
@@ -81,7 +81,7 @@ const AllServies = () => {
                       <div className="category-card">
                         <img
                           className="category-card-img-top"
-                          src="images/img.svg"
+                          src="images/ApplianceRepair.svg"
                           alt="AC & Appliance Repair"
                         />
                         <div className="card-body mt-3">
@@ -113,7 +113,7 @@ const AllServies = () => {
                         </div>
                         <img
                           className="category-card-img-top"
-                          src="images/img 3.svg"
+                          src="images/NativeWater.svg"
                           alt="Water Purifier"
                           style={{ width: "50%", height: "auto" }}
                         />
@@ -130,7 +130,7 @@ const AllServies = () => {
                         </div>
                         <img
                           className="category-card-img-top"
-                          src="images/im0g.svg"
+                          src="images/CleaningPest.svg"
                           alt="Cleaning"
                           style={{ width: "50%", height: "auto" }}
                         />

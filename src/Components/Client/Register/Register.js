@@ -2,7 +2,6 @@ import {
   faEnvelope,
   faEye,
   faEyeSlash,
-  faHandsWash,
   faStar,
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -105,7 +104,8 @@ const Register = () => {
         );
         if (response) {
           const token = response?.data?.token;
-          localStorage.setItem("clientoken", token);
+          localStorage.setItem("client-token", token);
+          localStorage.setItem("role", "Client");
           setMessage(response?.data?.message);
           handleShow();
           setEmail("");

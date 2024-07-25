@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Packageselection from "../Packageselection/Packageselection";
 import "./Features.css"; // Import your custom CSS file
 
 const Features = () => {
@@ -95,7 +94,6 @@ const Features = () => {
           </Row>
         </Container>
       </Container>
-      <Packageselection />
     </>
   );
 };

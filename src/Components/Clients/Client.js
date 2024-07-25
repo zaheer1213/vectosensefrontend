@@ -8,7 +8,6 @@ import {
   MDBRow,
   MDBCol,
 } from "mdb-react-ui-kit";
-import Journry from "../Journry/Journry";
 
 function Client() {
   return (
@@ -126,7 +125,6 @@ function Client() {
           </Row>
         </Container>
       </Container>
-      <Journry />
     </>
   );
 }

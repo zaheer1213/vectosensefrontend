@@ -1,14 +1,52 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Container, Carousel, Row, Col, Button } from "react-bootstrap";
 import "./Home.css";
 import About from "../About/About";
 import Header from "../Headar/Header";
+import Whychoosemain from "../Whychoose/Whychoosemain";
+import Information from "../Information/Information";
+import Count from "../CountUpAnimation/Count";
+import Features from "../Features/Features";
+import Packageselection from "../Packageselection/Packageselection";
+import Client from "../Clients/Client";
+import Journry from "../Journry/Journry";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
+  const aboutRef = useRef(null);
+  const pricingRef = useRef(null);
+  const featuresRef = useRef(null);
+  const homeRef = useRef(null);
+
+  const scrollToAbout = () => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const scrollToPrice = () => {
+    if (pricingRef.current) {
+      pricingRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const FeaturesRef = () => {
+    if (featuresRef.current) {
+      featuresRef.current.scrollIntoView({ behaviorL: "smooth" });
+    }
+  };
+  const scrollToHome = () => {
+    if (homeRef.current) {
+      homeRef.current.scrollIntoView({ behaviorL: "smooth" });
+    }
+  };
   return (
     <>
-      <Header />
-      <Container fluid className="home-container" id="home">
+      <Header
+        scrollToHome={scrollToHome}
+        scrollToAbout={scrollToAbout}
+        scrollToPrice={scrollToPrice}
+        FeaturesRef={FeaturesRef}
+      />
+      <Container fluid className="home-container" ref={homeRef}>
         <Carousel>
           <Carousel.Item>
             <div className="carousel-item-content">
@@ -66,7 +104,33 @@ const Home = () => {
           </Carousel.Item>
         </Carousel>
       </Container>
-      <About />
+      <div ref={aboutRef}>
+        <About />
+      </div>
+      <div>
+        <Whychoosemain />
+      </div>
+      <div>
+        <Information />
+      </div>
+      <div>
+        <Count />
+      </div>
+      <div ref={featuresRef}>
+        <Features />
+      </div>
+      <div ref={pricingRef}>
+        <Packageselection />
+      </div>
+      <div>
+        <Client />
+      </div>
+      <div>
+        <Journry />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </>
   );
 };

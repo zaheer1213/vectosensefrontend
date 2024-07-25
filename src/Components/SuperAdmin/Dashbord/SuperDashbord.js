@@ -16,6 +16,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AgCharts } from "ag-charts-react";
 
 const SuperDashbord = () => {
   const [rowData, setRowData] = useState([
@@ -55,6 +56,30 @@ const SuperDashbord = () => {
   const [data, setData] = useState([]);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
+
+  const getData = () => {
+    return [
+      { asset: "Stocks", amount: 60 },
+      { asset: "Bonds", amount: 20 },
+      { asset: "Real Estate", amount: 10 },
+      { asset: "Cash", amount: 5 },
+      { asset: "Commodities", amount: 5 },
+    ];
+  };
+  const [options2, setOptions2] = useState({
+    data: getData(),
+    title: {
+      text: "Portfolio Composition",
+    },
+    series: [
+      {
+        type: "donut",
+        calloutLabelKey: "asset",
+        angleKey: "amount",
+        innerRadiusRatio: 0.7,
+      },
+    ],
+  });
 
   var CanvasJS = CanvasJSReact.CanvasJS;
   var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -239,6 +264,7 @@ const SuperDashbord = () => {
     },
     // Add more clients as needed
   ];
+
   return (
     <>
       <Container fluid>
@@ -255,14 +281,9 @@ const SuperDashbord = () => {
             <Row>
               <CanvasJSChart options={options1} />
             </Row>
-            <Row className="py-3 mt-3">
+            <Row className="py-5 mt-5">
               <Col md={6}>
-                <Chart
-                  options={options}
-                  series={series}
-                  type="radialBar"
-                  height="350"
-                />
+                <AgCharts options={options2} />
               </Col>
               <Col md={6}>
                 <h4>Services Rate</h4>

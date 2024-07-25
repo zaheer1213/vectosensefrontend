@@ -121,7 +121,6 @@ const Category = () => {
         `${BASEURL}/service-provider/service-category/${id}`,
         { headers }
       );
-      console.log(response);
       setLoading(false);
       if (response.data) {
         setMessage("Category deleted successfully");

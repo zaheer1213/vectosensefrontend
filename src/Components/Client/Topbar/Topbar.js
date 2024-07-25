@@ -73,6 +73,9 @@ const Topbar = () => {
   const signin = () => {
     navigate("/clientregistration");
   };
+  const login = () => {
+    navigate("/clientlogin");
+  };
   const handleNavigate = () => {
     if (token) {
       localStorage.removeItem("client-token");
@@ -82,6 +85,7 @@ const Topbar = () => {
     } else {
       navigate("/login");
     }
+    setMenuOpen(false);
   };
 
   const handleMenuToggle = () => {
@@ -94,7 +98,7 @@ const Topbar = () => {
         <div className="d-flex align-items-center">
           <a
             className="navbar-brand me-2 mb-1 d-flex align-items-center"
-            href="/home"
+            href="/"
           >
             <img
               src="images/VECTOSENSELOGO.png"
@@ -167,19 +171,35 @@ const Topbar = () => {
                 </a>
               </li>
             )}
-            <li className="nav-item">
-              <a
-                className="btn btn-link"
-                style={{ color: "black", textDecoration: "none" }}
-                onClick={handleMenuToggle}
-              >
-                <img
-                  src="images/Variant2.png"
-                  style={{ height: "60px", width: "60px" }}
-                  alt="Menu Icon"
-                />
+            {!token && (
+              <a className="nav-link" href="#">
+                <Button
+                  style={{
+                    background: "white",
+                    color: "black",
+                    border: "1px solid black",
+                  }}
+                  onClick={login}
+                >
+                  Login
+                </Button>
               </a>
-            </li>
+            )}
+            {token && (
+              <li className="nav-item">
+                <a
+                  className="btn btn-link"
+                  style={{ color: "black", textDecoration: "none" }}
+                  onClick={handleMenuToggle}
+                >
+                  <img
+                    src="images/Variant2.png"
+                    style={{ height: "60px", width: "60px" }}
+                    alt="Menu Icon"
+                  />
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

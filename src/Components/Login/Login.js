@@ -90,7 +90,7 @@ const Login = () => {
 
             if (userRole == "Client") {
               localStorage.setItem("client-token", token);
-              navigate("/home");
+              navigate("/");
             } else if (userRole == "Admin") {
               localStorage.setItem("admin-token", token);
               navigate("/dashbord");

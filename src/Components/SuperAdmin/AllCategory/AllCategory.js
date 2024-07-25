@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Modal, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { BASEURL } from "../../Commanconstans/Comman";
 import { Pagination, Stack } from "@mui/material";
 import Loader from "../../Loader/Loader";
@@ -28,6 +28,20 @@ const AllCategory = () => {
   const [categoryName, setcategoryName] = useState("");
   const [error, setError] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [categoryImg, setCategoryImg] = useState(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setCategoryImg(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const columnDefs = [
     {
@@ -121,7 +135,6 @@ const AllCategory = () => {
         `${BASEURL}/superadmin/service-category/${id}`,
         { headers }
       );
-      console.log(response);
       setLoading(false);
       if (response.data) {
         setMessage("Category deleted successfully");
@@ -151,12 +164,16 @@ const AllCategory = () => {
       const headers = {
         "x-access-token": token,
       };
-      const paylod = {
-        category_name: categoryName,
-      };
+
+      const formdata = new FormData();
+      formdata.append("category_name", categoryName);
+      if (categoryImg) {
+        formdata.append("category_image", categoryImg);
+      }
       if (editId) {
+        setLoading(true);
         await axios
-          .put(`${BASEURL}/superadmin/service-category/${editId}`, paylod, {
+          .put(`${BASEURL}/superadmin/service-category/${editId}`, formdata, {
             headers,
           })
           .then((responce) => {
@@ -166,12 +183,15 @@ const AllCategory = () => {
               getAllCategory();
               setEditId(null);
               setcategoryName("");
+              setLoading(false);
+              setCategoryImg(null);
             }
           })
           .catch((error) => console.log(error));
       } else {
+        setLoading(true);
         await axios
-          .post(BASEURL + "/superadmin/service-category", paylod, {
+          .post(BASEURL + "/superadmin/service-category", formdata, {
             headers,
           })
           .then((responce) => {
@@ -181,6 +201,8 @@ const AllCategory = () => {
               getAllCategory();
               setEditId(null);
               setcategoryName("");
+              setLoading(false);
+              setCategoryImg(null);
             }
           })
           .catch((error) => console.log(error));
@@ -200,6 +222,7 @@ const AllCategory = () => {
         if (res.data) {
           setShow2(true);
           setcategoryName(res.data.data.category_name);
+          setImagePreviewUrl(BASEURL + res.data.data.category_image);
           setLoading(false);
         }
       })
@@ -314,6 +337,20 @@ const AllCategory = () => {
             />
             {error && !categoryName && (
               <p className="text-danger m-2">please enter category name</p>
+            )}
+          </div>
+          <div className="text-start mt-3">
+            <label className="mb-2">Category Image</label> <br />
+            <input type="file" onChange={handleImageChange} /> <br />
+            <strong className="mt-5">Please add a high-resolution image</strong>
+            {imagePreviewUrl && (
+              <div className="imgCol mt-3">
+                <img
+                  src={imagePreviewUrl}
+                  alt="Category Preview"
+                  style={{ height: "100px", width: "100px" }}
+                />
+              </div>
             )}
           </div>
         </Modal.Body>

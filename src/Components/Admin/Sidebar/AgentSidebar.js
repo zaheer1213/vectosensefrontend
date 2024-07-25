@@ -2,7 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaHome } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBriefcase, faChartSimple } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faBriefcase,
+  faChartSimple,
+  faHome,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 
 function AgentSidebar() {
@@ -46,6 +51,14 @@ function AgentSidebar() {
       )}
       <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="sidebar-menu" style={{ background: "white" }}>
+          <NavLink
+            to="/"
+            className="sidebar-item"
+            activeClassName="active"
+          >
+            <FontAwesomeIcon icon={faHome} className="sidebar-icon" />
+            <span>Home</span>
+          </NavLink>
           <NavLink
             to="/agent-dashbord"
             className="sidebar-item"

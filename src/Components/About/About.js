@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./About.css";
-import Whychoosemain from "../Whychoose/Whychoosemain";
 
 const About = () => {
   return (
@@ -42,7 +41,7 @@ const About = () => {
           </Row>
         </Container>
       </Container>
-      <Whychoosemain />
+    
     </>
   );
 };

@@ -46,7 +46,7 @@ const VerificationForm = () => {
             navigate("/businessregistration", { state: { token: token } });
             localStorage.setItem("admin-token", token);
           } else if (userRole == "Client") {
-            navigate("/home");
+            navigate("/");
           }
         }
       })

@@ -47,7 +47,7 @@ const ServicesSliderCards = () => {
   return (
     <Container>
       <div className="slider-container">
-        <h2 className="text-start">New and noteworthy</h2>
+        <h2 className="text-start">New and Noteworthy</h2>
         <Slider {...settings}>
           {cardData.map((card, index) => (
             <div key={index} style={{ padding: "0 10px" }}>

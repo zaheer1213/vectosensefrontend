@@ -60,6 +60,8 @@ import EditService from "./SuperAdmin/AllServices/EditService";
 import EditAgent from "./SuperAdmin/Allagents/EditAgent";
 import EditBusiness from "./SuperAdmin/AllBusiness/EditBusiness";
 import AllCategory from "./SuperAdmin/AllCategory/AllCategory";
+import PerticularCategoryPage from "./Client/ServiceSwiper/PerticularCategoryPage";
+import ClientLogin from "./Login/ClientLogin";
 
 const Routing = () => {
   const UserRole = localStorage.getItem("role");
@@ -69,7 +71,7 @@ const Routing = () => {
     <Routes>
       {/* Frontside pages */}
       <Route element={<FrontsideLayout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/partners" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/whychooseus" element={<Whychoosemain />} />
         <Route path="/login" element={<Login />} />
@@ -83,13 +85,18 @@ const Routing = () => {
         <Route path="/journry" element={<Journry />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/serviceprovider" element={<Navigation />} />
-        <Route path="/home" element={<Finalhome />} />
+        <Route path="/" element={<Finalhome />} />
         <Route path="/clientregistration" element={<Register />} />
+        <Route path="/clientlogin" element={<ClientLogin />} />
         <Route path="/servicepage" element={<Perticularservice />} />
         <Route path="/invoice" element={<Invoice />} />
         <Route path="/termscondition" element={<TermsAndConditions />} />
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/refund" element={<Refund />} />
+        <Route
+          path="/PerticularCategory"
+          element={<PerticularCategoryPage />}
+        />
 
         {/* Registration pages  with role Admin*/}
         {isAuthenticated && UserRole == "Admin" ? (

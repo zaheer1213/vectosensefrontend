@@ -30,7 +30,7 @@ const Invoice = () => {
 
   const getUserInformation = async () => {
     const headers = {
-      "x-access-token": localStorage.getItem("clientoken"),
+      "x-access-token": localStorage.getItem("client-token"),
     };
     await axios
       .get(`${BASEURL}/appointment/booking/${bookingId}`, { headers })
@@ -89,7 +89,11 @@ const Invoice = () => {
         <Container className="invoice-container">
           <Row className="align-items-center mb-4">
             <Col md={6}>
-              <img src="images/logo.png" alt="Logo" className="logo" />
+              <img
+                src={BASEURL + businessData?.business_logo}
+                alt="Logo"
+                className="logo"
+              />
             </Col>
             <Col md={6} className="text-md-right">
               <h1 style={{ color: "#5B549E" }}>Invoice</h1>

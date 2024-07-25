@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./Journry.css";
-import Footer from "../Footer/Footer";
 import { NavLink } from "react-router-dom";
 
 const Journry = () => {
@@ -28,7 +27,6 @@ const Journry = () => {
           </Row>
         </Container>
       </Container>
-      <Footer />
     </>
   );
 };

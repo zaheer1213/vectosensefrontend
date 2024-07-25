@@ -5,8 +5,29 @@
     background-color: white;
 }
 
-.firstcol {
+.imagesdiv {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    /* Center the gallery if needed */
+}
+
+
+.react-image-gallery {
+    width: 100%;
     height: auto;
+    /* Maintain aspect ratio */
+}
+
+.react-image-gallery-slide img {
+    width: 100%;
+    /* Ensure images fit within the container */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.firstcol {
+    height: 100%;
     background-color: #f8f8ff;
     padding: 20px;
     display: flex;
@@ -54,13 +75,53 @@
     flex-direction: column;
 }
 
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .custom-button {
     color: black;
     border: 1px solid #5B549E;
+    flex: 1 1 calc(50% - 10px);
+    font-size: 14px;
 }
 
 .custom-button:hover {
     border-color: #5B549E !important;
     color: white;
     background-color: #5B549E;
+}
+
+
+@media (max-width: 768px) {
+    .imagesdiv {
+        max-height: 300px;
+        /* Adjust according to mobile design */
+    }
+
+
+    .image-gallery-slides {
+        text-align: start;
+        width: 60%;
+    }
+
+    .image-gallery-thumbnails .image-gallery-thumbnails-container {
+        text-align: start !important;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .imagesdiv {
+        max-height: 250px;
+        /* Further adjust for smaller mobile screens */
+    }
+
+    .react-image-gallery-slide img {
+        width: 100%;
+        height: auto;
+        /* Maintain aspect ratio */
+    }
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import ServicesSliderCards from "./ServicesSliderCards";
+import { Container, Col, Button } from "react-bootstrap";
+import Slider from "react-slick";
 import axios from "axios";
 import { BASEURL } from "../../Commanconstans/Comman";
+import ServicesSliderCards from "./ServicesSliderCards";
 
 const CardComponent = () => {
   const [pageLimit, setPageLimit] = useState(8); // Items per page
@@ -24,7 +25,6 @@ const CardComponent = () => {
         headers: headers,
       })
       .then((response) => {
-        console.log(response);
         setAllservicedata(response.data.rows);
         setLoading(false);
       })
@@ -33,81 +33,82 @@ const CardComponent = () => {
         setLoading(false);
       });
   };
+
   useEffect(() => {
     getAllServices();
   }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
-      <Container
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Row className="py-5">
-          <Col className="mb-3">
-            <div
-              className="card d-flex flex-row align-items-center"
-              style={{
-                width: "20rem",
-                background: "#112966",
-                color: "white",
-                height: "220px",
-              }}
-            >
-              <div className="card-body">
-                <h5>Elevate your wedding glow</h5>
-                <span>#salon for women</span>{" "}
-                <div className="mt-3">
-                  <Button className="serviceButoon">Book Now</Button>
+      <Container>
+        <Slider {...settings}>
+          {allservicedata &&
+            allservicedata.map((cards, index) => {
+              const colors = ["#112966", "#B61575", "#33366E"];
+              const backgroundColor = colors[index % colors.length];
+              return (
+                <div key={index}>
+                  <div
+                    className="card d-flex flex-row align-items-center"
+                    style={{
+                      width: "20rem",
+                      background: backgroundColor,
+                      color: "white",
+                      height: "220px",
+                    }}
+                  >
+                    <div className="card-body">
+                      <h5>{cards.name}</h5>
+                      <span>#{cards.category_name}</span>{" "}
+                      <div className="mt-3">
+                        <Button className="serviceButoon">Book Now</Button>
+                      </div>
+                    </div>
+                    <img
+                      src={BASEURL + cards.service_logo}
+                      alt="Card image"
+                      style={{
+                        width: "50%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-              <img
-                src="images/mekup_women.png" // replace with your image path
-                alt="Card image"
-                style={{ width: "50%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          </Col>
-          <Col className="mb-3">
-            <div
-              className="card d-flex flex-row align-items-center"
-              style={{ width: "20rem", background: "#B61575", color: "white" }}
-            >
-              <div className="card-body">
-                <h5>Galti reh gayi toh painting free</h5>
-                <span>#pay after satisfaction</span>{" "}
-                <div className="mt-3">
-                  <Button className="serviceButoon">Book Now</Button>
-                </div>
-              </div>
-              <img
-                src="images/service_man.png"
-                alt="Card image"
-                style={{ width: "50%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          </Col>
-          <Col className="mb-3">
-            <div
-              className="card d-flex flex-row align-items-center"
-              style={{ width: "20rem", background: "#33366E", color: "white" }}
-            >
-              <div className="card-body">
-                <h5>save on electricity bills with power saver ac service</h5>
-                <div className="mt-3">
-                  <Button className="serviceButoon">Book Now</Button>
-                </div>
-              </div>
-              <img
-                src="images/service_man2.png"
-                alt="Card image"
-                style={{ width: "50%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          </Col>
-        </Row>
+              );
+            })}
+        </Slider>
       </Container>
       <ServicesSliderCards />
     </>

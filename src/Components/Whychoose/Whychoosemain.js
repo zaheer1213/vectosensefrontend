@@ -2,8 +2,6 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import CenterMode from "./CenterMode";
 import "./CenterMode.css";
-import Information from "../Information/Information";
-
 function Whychoosemain() {
   return (
     <>
@@ -26,7 +24,6 @@ function Whychoosemain() {
         </Row>
         <img src="images/arrowgirl.png" className="girlimg" alt="Arrow Girl" />
       </Container>
-      <Information />
     </>
   );
 }

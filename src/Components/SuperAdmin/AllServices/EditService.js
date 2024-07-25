@@ -40,6 +40,7 @@ const EditService = () => {
   const [error, setError] = useState(false);
   const [id, setId] = useState(null);
   const [initialServiceData, setinitialServiceData] = useState(null);
+  const [isPromotional, setIsPromotional] = useState(false);
 
   const handleClose = () => setShow(false);
 
@@ -622,6 +623,16 @@ const EditService = () => {
                       onChange={handleSliderChange}
                     />
                     <div>Selected Time: {formatTime(timeValue)} Min</div>
+                  </Col>
+                  <Col md={4}>
+                    <Form.Label>Is Promotional Service?</Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      onChange={(e) => setIsPromotional(e.target.value)}
+                    >
+                      <option value={false}>No</option>
+                      <option value={true}>Yes</option>
+                    </Form.Select>
                   </Col>
                 </Row>
                 <Button variant="" type="submit" className="longbtn mb-3">

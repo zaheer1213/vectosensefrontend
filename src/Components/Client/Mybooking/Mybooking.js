@@ -50,6 +50,18 @@ const Mybooking = () => {
       });
   };
 
+  const generateInvoice = async (service_id) => {
+    const token = localStorage.getItem("client-token");
+    const headers = {
+      "x-access-token": token,
+    };
+    await axios
+      .get(`${BASEURL}/appointment/booking-invoice/${service_id}`, { headers })
+      .then((responce) => {
+        console.log(responce);
+      })
+      .catch((error) => console.log(error));
+  };
   const columnDefs = [
     { headerName: "Sr No", field: "sr", sortable: true, filter: true },
     {
@@ -92,22 +104,14 @@ const Mybooking = () => {
         <>
           {params.data.status == "Pending" ? (
             <>
-              <Button size="sm" variant="warning">
-                Pending
-              </Button>
+              <strong className="text-warning">Pending</strong>
             </>
           ) : params.data.status == "Rejected" ? (
-            <Button size="sm" variant="danger">
-              Rejected
-            </Button>
+            <strong className="text-danger">Rejected</strong>
           ) : params.data.status == "Approved" ? (
-            <Button size="sm" variant="success">
-              Approved
-            </Button>
+            <strong className="text-success">Approved</strong>
           ) : (
-            <Button size="sm" variant="secondary">
-              {params.data.status}
-            </Button>
+            <strong className="text-secondary">{params.data.status}</strong>
           )}
         </>
       ),
@@ -124,14 +128,33 @@ const Mybooking = () => {
               Canceled
             </Button>
           ) : (
-            <Button
-              size="sm"
-              variant="secondary"
-              onClick={() => openService(params.value)}
-            >
-              Cancel Booking
-            </Button>
+            <>
+              {" "}
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => openService(params.value)}
+              >
+                Cancel Booking
+              </Button>
+            </>
           )}
+        </>
+      ),
+    },
+    {
+      sortable: true,
+      filter: true,
+      cellRenderer: (params) => (
+        <>
+          <Button
+            size="sm"
+            variant="primary"
+            onClick={() => generateInvoice(params.data.id)}
+            style={{ marginLeft: "10px" }}
+          >
+            Get Invoice
+          </Button>
         </>
       ),
     },

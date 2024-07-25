@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import "./Packageselection.css";
-import { Button, ButtonGroup, ToggleButton } from "react-bootstrap";
-import Client from "../Clients/Client";
+import { Button } from "react-bootstrap";
 
 const Packageselection = () => {
   const [radioValue, setRadioValue] = useState(1);
 
-  const radios = [
-    { name: "Monthly plans", value: "1" },
-    { name: "Annual plans", value: "2" },
-  ];
   return (
     <>
       <section class="price_plan_area section_padding_130_80 py-5" id="pricing">
@@ -341,7 +336,6 @@ const Packageselection = () => {
           )}
         </div>
       </section>
-      <Client />
     </>
   );
 };

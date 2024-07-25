@@ -215,11 +215,6 @@ const Perticularservice = () => {
       return;
     }
 
-    if (details.trim() === "") {
-      setFormErrors((prevErrors) => ({ ...prevErrors, details: true }));
-      return;
-    }
-
     if (phone.trim() === "") {
       setFormErrors((prevErrors) => ({ ...prevErrors, phone: true }));
       return;
@@ -250,6 +245,7 @@ const Perticularservice = () => {
       notes: details,
       mobile: phone,
       email: email,
+      amount: servicedata?.price_per_hour,
     };
 
     const headers = {
@@ -261,7 +257,10 @@ const Perticularservice = () => {
         console.log(res);
         if (res.data) {
           const bookingID = res.data.data.id;
-          navigate("/invoice", { state: { bookingId: bookingID } });
+          if (res.data.pay_page_url) {
+            window.location.href = res.data.pay_page_url;
+          }
+          // navigate("/invoice", { state: { bookingId: bookingID } });
         }
       })
       .catch((error) => console.log(error));
@@ -279,8 +278,8 @@ const Perticularservice = () => {
       <Container fluid>
         <Container className="perticualrservice">
           <Row>
-            <Col md={6} className="firstcol">
-              <div className="imggesdiv">
+            <Col md={5} className="firstcol">
+              <div className="imagesdiv">
                 <ImageGallery items={images} />
               </div>
               <div className="reviewdiv">
@@ -397,7 +396,7 @@ const Perticularservice = () => {
                 </div>
               </div>
             </Col>
-            <Col md={6} className="secondcol">
+            <Col md={7} className="secondcol">
               <div>
                 <p>{servicedata.agent}</p>
                 <h2>{servicedata.name}</h2>
@@ -421,48 +420,7 @@ const Perticularservice = () => {
                   <p>{servicedata?.description}</p>
                 </div>
               </div>
-              <div className="mt-5">
-                <div className="d-none">
-                  <h5>Select Your Home Size</h5>
-                  <hr />
-                  <div>
-                    <button
-                      className="btn w-30"
-                      style={{ color: "#5B549E", border: "1px solid #5B549E" }}
-                    >
-                      1 RK
-                    </button>
-                    &nbsp; &nbsp;
-                    <button
-                      className="btn w-30"
-                      style={{ color: "#5B549E", border: "1px solid #5B549E" }}
-                    >
-                      1 BHK
-                    </button>
-                    &nbsp; &nbsp;
-                    <button
-                      className="btn w-30"
-                      style={{ color: "#5B549E", border: "1px solid #5B549E" }}
-                    >
-                      2 BHK
-                    </button>
-                    &nbsp; &nbsp;
-                    <button
-                      className="btn w-30"
-                      style={{ color: "#5B549E", border: "1px solid #5B549E" }}
-                    >
-                      3 BHK
-                    </button>
-                    &nbsp; &nbsp;
-                    <button
-                      className="btn w-30"
-                      style={{ color: "#5B549E", border: "1px solid #5B549E" }}
-                    >
-                      BUNGALOW
-                    </button>
-                  </div>
-                </div>
-
+              <div className="">
                 <div className="mt-3">
                   <h5>$ {servicedata.price_per_hour}/hr</h5>
                 </div>
@@ -477,13 +435,14 @@ const Perticularservice = () => {
                       onChange={handleDateChange}
                       renderInput={(params) => <TextField {...params} />}
                       minDate={today}
+                      showToolbar={false}
                     />
                   </LocalizationProvider>
                 </Col>
                 <Col md={6}>
                   <h5>Available Slots</h5>
                   <hr />
-                  <div>
+                  <div className="button-container">
                     {timeSlots.length === 0 ? (
                       <p className="fw-bold">No Slots Available On This Day</p>
                     ) : (
@@ -496,7 +455,7 @@ const Perticularservice = () => {
                         return (
                           <Button
                             key={index}
-                            className="w-100 mb-2 custom-button"
+                            className="custom-button"
                             variant={
                               selectedSlot === slot
                                 ? "primary"
@@ -625,11 +584,7 @@ const Perticularservice = () => {
                 placeholder="Enter address"
                 value={formData.details}
                 onChange={handleChange}
-                isInvalid={formErrors.details}
               />
-              <Form.Control.Feedback type="invalid">
-                Please provide Note.
-              </Form.Control.Feedback>
             </Form.Group>
             <Button
               type="submit"

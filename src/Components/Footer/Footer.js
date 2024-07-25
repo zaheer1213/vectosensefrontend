@@ -11,13 +11,14 @@ import "./Footer.css";
 
 const Footer = () => {
   const userRole = localStorage.getItem("role");
+  const AdminTokne = localStorage.getItem("admin-token");
   return (
     <>
       <Container fluid className="py-1 footercolor">
         <Container className="mt-5">
           <Row>
-            <Col md={5}>
-              <div>
+            <Col md={4}>
+              <div className="footersection">
                 <div className="footerlogo">
                   <img
                     src="images/VECTOSENSELOGO.png"
@@ -31,10 +32,6 @@ const Footer = () => {
                   services. We pride ourselves on delivering tailored services
                   to meet your unique needs, ensuring top-notch quality and
                   customer satisfaction.
-                  {/* With VectoSense,
-                  experience convenience and excellence in every service,
-                  designed to enhance your lifestyle and elevate your everyday
-                  tasks */}
                 </p>
                 <div>
                   <div
@@ -60,7 +57,7 @@ const Footer = () => {
                 </div>
               </div>
             </Col>
-            <Col md={3}>
+            <Col md={4}>
               <div className="mb-4 mb-md-0">
                 <h5 className="text-uppercase text-light">Quick links</h5>
                 {userRole == "Admin" ? (
@@ -75,13 +72,15 @@ const Footer = () => {
                     <NavLink to="/home" className="custom-link">
                       <div className="text-light mb-2">Home</div>
                     </NavLink>
-                    {/* <div className="text-light mb-2">Services</div> */}
+                    <NavLink to="/partners" className="custom-link">
+                      <div className="text-light mb-2">Grow With Us</div>
+                    </NavLink>
                     {/* <div className="text-light mb-2">Pricing</div> */}
                   </div>
                 )}
               </div>
             </Col>
-            <Col md={3}>
+            <Col md={4}>
               <div className="mb-4 mb-md-0">
                 <h5 className="text-uppercase text-light">LEGAL</h5>
                 <div className="link-animated d-flex flex-column justify-content-start mt-3">

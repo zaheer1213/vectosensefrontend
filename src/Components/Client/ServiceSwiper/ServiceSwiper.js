@@ -5,8 +5,10 @@ import "./ServiceSwiper.css";
 import AllServies from "../AllServies/AllServies";
 import axios from "axios";
 import { BASEURL } from "../../Commanconstans/Comman";
+import { useNavigate } from "react-router-dom";
 
 const ServiceSwiper = () => {
+  const Navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [allCategory, setAllCategory] = useState([]);
@@ -48,6 +50,9 @@ const ServiceSwiper = () => {
     }
   };
 
+  const movePerticularCatory = (id) => {
+    Navigate("/PerticularCategory", { state: { catogaryId: id } });
+  };
   useEffect(() => {
     getAllCategory();
   }, []);
@@ -58,7 +63,11 @@ const ServiceSwiper = () => {
         <div className="slider-container">
           <Slider {...settings}>
             {allCategory.map((category, index) => (
-              <div key={index} className="slider-card pointer">
+              <div
+                key={index}
+                className="slider-card pointer"
+                onClick={() => movePerticularCatory(category.id)}
+              >
                 <div className="image-wrapper">
                   <img
                     src={BASEURL + category.category_image}

@@ -177,7 +177,6 @@ const ThemeCreateionForm = () => {
         { headers }
       );
       if (response.error == false) {
-        console.log(response);
         window.history.back();
         // Navigate(`/serviceprovider/${response.data.data.user}`);
       }
