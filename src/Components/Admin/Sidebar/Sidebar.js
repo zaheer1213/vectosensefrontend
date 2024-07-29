@@ -10,9 +10,9 @@ import {
   faChartSimple,
   faClockRotateLeft,
   faGear,
-  faList,
   faMagnifyingGlassChart,
   faMessage,
+  faPenToSquare,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
@@ -157,6 +157,14 @@ function Sidebar() {
             <FontAwesomeIcon icon={faList} className="sidebar-icon" />
             <span>Category</span>
           </NavLink> */}
+          <NavLink
+            to="/review"
+            className="sidebar-item"
+            activeClassName="active"
+          >
+            <FontAwesomeIcon icon={faPenToSquare} className="sidebar-icon" />
+            <span>Review</span>
+          </NavLink>
         </div>
       </div>
     </>

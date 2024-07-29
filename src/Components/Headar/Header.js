@@ -80,7 +80,6 @@ function Header({ scrollToAbout, scrollToPrice, FeaturesRef, scrollToHome }) {
   };
 
   const handelMoveDashbord = () => {
-    console.log(role, "k");
     if (role === "Agent") {
       navigate("/agent-dashbord");
     } else if (role === "Admin") {

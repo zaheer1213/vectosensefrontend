@@ -17,45 +17,18 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AgCharts } from "ag-charts-react";
+import axios from "axios";
+import { BASEURL } from "../../Commanconstans/Comman";
 
 const SuperDashbord = () => {
-  const [rowData, setRowData] = useState([
-    {
-      make: "Tesla",
-      model: "Model Y",
-      price: "Active",
-      electric: true,
-      month: "June",
-      date: new Date(),
-    },
-    {
-      make: "Ford",
-      model: "F-Series",
-      price: "Active",
-      electric: false,
-      month: "October",
-      date: new Date(),
-    },
-    {
-      make: "Toyota",
-      model: "Corolla",
-      price: "Active",
-      electric: false,
-      month: "August",
-      date: new Date(),
-    },
-    {
-      make: "Mercedes",
-      model: "EQA",
-      price: "InActive",
-      electric: true,
-      month: "February",
-      date: new Date(),
-    },
-  ]);
+  const [rowData, setRowData] = useState([]);
   const [data, setData] = useState([]);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
+  const [dashbordData, setDashbordData] = useState({});
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(15);
+  const [profitData, setProfitData] = useState([]);
 
   const getData = () => {
     return [
@@ -66,6 +39,7 @@ const SuperDashbord = () => {
       { asset: "Commodities", amount: 5 },
     ];
   };
+
   const [options2, setOptions2] = useState({
     data: getData(),
     title: {
@@ -110,26 +84,6 @@ const SuperDashbord = () => {
 
   const series = [44, 55, 67, 83];
 
-  useEffect(() => {
-    setStartTime(new Date());
-
-    const limit = 50000;
-    let y = 100;
-    const dataPoints = [];
-
-    for (let i = 0; i < limit; i += 1) {
-      y += Math.round(Math.random() * 10 - 5);
-      dataPoints.push({
-        x: i,
-        y: y,
-      });
-    }
-
-    setData([{ type: "line", dataPoints }]);
-
-    setEndTime(new Date());
-  }, []);
-
   const options1 = {
     zoomEnabled: true,
     animationEnabled: true,
@@ -138,32 +92,20 @@ const SuperDashbord = () => {
     },
     data: data,
   };
-
-  const [value, setValue] = useState(0); // Initial value set to 50
-
-  // Function to handle changes in range input
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs = [
     {
-      field: "make",
+      field: "business_name",
       checkboxSelection: true,
       editable: true,
       cellEditor: "agSelectCellEditor",
       cellRenderer: (params) => {
-        // Replace with actual image paths based on make value
         let imageUrl = "";
         switch (params.value) {
           case "Tesla":
-            imageUrl = "images/Avatar.png";
+            imageUrl = BASEURL + params.data.business_logo;
             break;
-          case "Ford":
-            imageUrl = "images/Avatar.png";
-            break;
-          // Add cases for other makes as needed
           default:
-            imageUrl = "images/Avatar.png";
+            imageUrl = BASEURL + params.data.business_logo;
         }
         return (
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -197,29 +139,11 @@ const SuperDashbord = () => {
         );
       },
     },
-    { headerName: "Last assessed", field: "date" },
-    { headerName: "Status", field: "price", filter: "agNumberColumnFilter" },
+    { headerName: "Business No", field: "business_no" },
     {
-      field: "month",
-      comparator: (valueA, valueB) => {
-        const months = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ];
-        const idxA = months.indexOf(valueA);
-        const idxB = months.indexOf(valueB);
-        return idxA - idxB;
-      },
+      headerName: "Business Email",
+      field: "business_email",
+      filter: "agNumberColumnFilter",
     },
     {
       headerName: "Action",
@@ -243,7 +167,7 @@ const SuperDashbord = () => {
         </>
       ),
     },
-  ]);
+  ];
   const defaultColDef = {
     flex: 1,
     filter: "agTextColumnFilter",
@@ -265,19 +189,129 @@ const SuperDashbord = () => {
     // Add more clients as needed
   ];
 
+  const dashbordCount = async () => {
+    const token = localStorage.getItem("superadmin-token");
+    const headers = {
+      "x-access-token": token,
+    };
+    await axios
+      .get(`${BASEURL}/superadmin/dashboard-api1`, { headers })
+      .then((responce) => {
+        setDashbordData(responce.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllBuinessData = async () => {
+    const token = localStorage.getItem("superadmin-token");
+    const headers = {
+      "x-access-token": token,
+    };
+    await axios
+      .get(`${BASEURL}/superadmin/dashboard-api3?page=1&limit=10`, { headers })
+      .then((responce) => {
+        if (responce) {
+          setRowData(responce.data.rows);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const allServiceProfit = async () => {
+    const token = localStorage.getItem("superadmin-token");
+    const headers = {
+      "x-access-token": token,
+    };
+    await axios
+      .get(`${BASEURL}/superadmin/dashboard-api`, { headers })
+      .then((responce) => {
+        console.log(responce.data.data);
+        if (responce) {
+          setProfitData(responce.data.data);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+  useEffect(() => {
+    dashbordCount();
+    getAllBuinessData();
+    allServiceProfit();
+    setStartTime(new Date());
+
+    const limit = 50000;
+    let y = 100;
+    const dataPoints = [];
+
+    for (let i = 0; i < limit; i += 1) {
+      y += Math.round(Math.random() * 10 - 5);
+      dataPoints.push({
+        x: i,
+        y: y,
+      });
+    }
+
+    setData([{ type: "line", dataPoints }]);
+
+    setEndTime(new Date());
+  }, []);
   return (
     <>
       <Container fluid>
         <Container className="container-center" style={{ marginTop: "50px" }}>
           <Col>
             <div className="text-center hedingDiv">
-              <h1 className="text-center ">Analytics</h1>
+              <h1 className="text-center ">Dashboard</h1>
               <p>
                 Our philosophy is simple — create a team of diverse, passionate
                 people and <br /> foster a culture that empowers you to do you
                 best work.
               </p>
             </div>
+            <Row className="mt-5">
+              <Col md={3}>
+                <div className="custome-cards-dashbord bg-filler">
+                  <strong>TOTAL PROFIT</strong>
+                  <div className="ineer-dashbord-div">
+                    <h4>${dashbordData?.total_profit}</h4>
+                    {/* <div>+ 36%</div> */}
+                  </div>
+                </div>
+              </Col>
+              <Col md={3}>
+                <div className="custome-cards-dashbord bg-filler text-center">
+                  <strong>Total Services</strong>
+                  <h1 className="text-center">
+                    {dashbordData?.service_count
+                      ? dashbordData?.service_count
+                      : "0"}
+                  </h1>
+                </div>
+              </Col>
+              <Col md={3}>
+                <div className="custome-cards-dashbord bg-filler text-center">
+                  <strong>Total Agents</strong>
+                  <h1 className="text-center">
+                    {dashbordData?.agent_count
+                      ? dashbordData?.agent_count
+                      : "0"}
+                  </h1>
+                </div>
+              </Col>
+              <Col md={3}>
+                <div className="custome-cards-dashbord bg-filler">
+                  <strong>Total Booking</strong>
+                  <div className="ineer-dashbord-div">
+                    <h4>
+                      {" "}
+                      {dashbordData?.booking_count
+                        ? dashbordData?.booking_count
+                        : "0"}
+                    </h4>
+                    {/* <div>+ 56%</div> */}
+                  </div>
+                </div>
+              </Col>
+            </Row>
             <Row>
               <CanvasJSChart options={options1} />
             </Row>
@@ -327,6 +361,9 @@ const SuperDashbord = () => {
             </Row>
             <Row>
               <Col>
+                <div>
+                  <h2 className="mb-3">Business</h2>
+                </div>
                 <div
                   className="ag-theme-alpine"
                   style={{ height: 600, width: "100%" }}
@@ -338,7 +375,7 @@ const SuperDashbord = () => {
                     rowSelection="multiple"
                     suppressRowClickSelection={true}
                     pagination={true}
-                    paginationPageSize={10}
+                    paginationPageSize={limit}
                     paginationPageSizeSelector={[10, 25, 50]}
                   />
                 </div>
@@ -350,37 +387,25 @@ const SuperDashbord = () => {
                 <Table responsive="sm" className="clients-table">
                   <thead>
                     <tr>
-                      <th>About</th>
-                      <th>Users</th>
-                      <th>License use</th>
+                      <th>Service Name</th>
+                      <th>Image</th>
+                      <th>Total Revenue</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {clients.map((client, index) => (
+                    {profitData.map((client, index) => (
                       <tr key={index}>
                         <td>
-                          <strong>{client.name}</strong>
-                          <br />
-                          <span>{client.description}</span>
+                          <strong>{client.service_name}</strong>
                         </td>
                         <td>
-                          <div className="user-icons">
-                            {client.users.map((user, i) => (
-                              <Image
-                                key={i}
-                                src={`/path/to/images/${user}`}
-                                roundedCircle
-                                className="user-icon"
-                              />
-                            ))}
-                          </div>
-                        </td>
-                        <td>
-                          <ProgressBar
-                            now={client.licenseUse}
-                            label={`${client.licenseUse}%`}
+                          <img
+                            src={`${BASEURL + client.service_logo}`}
+                            alt="servicelogo"
+                            className="user-icon"
                           />
                         </td>
+                        <td>${client.total_revenue}</td>
                       </tr>
                     ))}
                   </tbody>

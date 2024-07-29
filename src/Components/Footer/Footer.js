@@ -6,12 +6,20 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
+  const naviate = useNavigate();
   const userRole = localStorage.getItem("role");
-  const AdminTokne = localStorage.getItem("admin-token");
+
+  const movetopaartner = () => {
+    localStorage.removeItem("role");
+    localStorage.removeItem("token")
+    window.scroll(0, 0);
+    naviate("/partners");
+  };
+
   return (
     <>
       <Container fluid className="py-1 footercolor">
@@ -72,9 +80,12 @@ const Footer = () => {
                     <NavLink to="/home" className="custom-link">
                       <div className="text-light mb-2">Home</div>
                     </NavLink>
-                    <NavLink to="/partners" className="custom-link">
-                      <div className="text-light mb-2">Grow With Us</div>
-                    </NavLink>
+                    <div
+                      className="text-light mb-2 pointer"
+                      onClick={() => movetopaartner()}
+                    >
+                      Grow With Us
+                    </div>
                     {/* <div className="text-light mb-2">Pricing</div> */}
                   </div>
                 )}

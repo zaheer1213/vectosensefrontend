@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Topbar from "../Topbar/Topbar";
 import axios from "axios";
 import { BASEURL } from "../../Commanconstans/Comman";
@@ -10,8 +10,11 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import Footer from "../../Footer/Footer";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const Mybooking = () => {
+  const invoiceRef = useRef();
   const [bookingData, setBookingData] = useState([]);
   const [loder, setLoder] = useState(false);
   const [limit, setLimit] = useState(5);
@@ -21,7 +24,17 @@ const Mybooking = () => {
   const [show1, setShow1] = useState(false);
   const [message, setMessage] = useState("");
   const [id, setId] = useState(null);
+  const [randomNumber, setRandomNumber] = useState(null);
+  const [invoiceData, setInvoiceData] = useState({});
+  const [serviceData, setServiceData] = useState({});
+  const [businessData, setBusinessData] = useState({});
+  const [invioceBookingData, setinvioceBookingData] = useState({});
+  const [dataReady, setDataReady] = useState(false);
+  const currentDate = new Date().toLocaleDateString();
 
+  const generateRandomNumber = () => {
+    return Math.floor(10000 + Math.random() * 90000);
+  };
   const getAllBooking = async (page, limit) => {
     const token = localStorage.getItem("client-token");
     const headers = {
@@ -55,13 +68,28 @@ const Mybooking = () => {
     const headers = {
       "x-access-token": token,
     };
-    await axios
-      .get(`${BASEURL}/appointment/booking-invoice/${service_id}`, { headers })
-      .then((responce) => {
-        console.log(responce);
-      })
-      .catch((error) => console.log(error));
+
+    try {
+      const response = await axios.get(
+        `${BASEURL}/appointment/booking-invoice/${service_id}`,
+        { headers }
+      );
+
+      if (response) {
+        const allData = response.data;
+        setInvoiceData(allData.data);
+        setServiceData(allData.service_data);
+        setBusinessData(allData.business_details);
+        setinvioceBookingData(allData.booking_data);
+        setDataReady(true);
+
+        // await handleDownloadPdf();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   const columnDefs = [
     { headerName: "Sr No", field: "sr", sortable: true, filter: true },
     {
@@ -194,10 +222,37 @@ const Mybooking = () => {
   const handleClose1 = () => {
     setShow1(false);
   };
+  const handleGenerateNumber = () => {
+    const newRandomNumber = generateRandomNumber();
+    setRandomNumber(newRandomNumber);
+  };
+
+  const handleDownloadPdf = () => {
+    const input = invoiceRef.current;
+    html2canvas(input, { useCORS: true, scale: 2 })
+      .then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`invoice_${randomNumber}.pdf`);
+      })
+      .catch((error) => {
+        console.error("Error generating PDF:", error);
+      });
+  };
 
   useEffect(() => {
+    handleGenerateNumber();
     getAllBooking(page, limit);
-  }, [page, limit]);
+    generateRandomNumber();
+
+    if (dataReady) {
+      handleDownloadPdf();
+      setDataReady(false);
+    }
+  }, [page, limit, dataReady]);
   return (
     <>
       {loder ? <Loader /> : ""}
@@ -231,6 +286,114 @@ const Mybooking = () => {
               rowSelection="multiple"
             />
           </div>
+        </div>
+
+        {/* invioce */}
+        <div
+          ref={invoiceRef}
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            top: "0",
+            backgroundColor: "white",
+            width: "210mm",
+            minHeight: "297mm",
+            padding: "20mm",
+            boxSizing: "border-box",
+          }}
+        >
+          <h1 style={{ color: "#5B549E", textAlign: "center" }}>Invoice</h1>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={BASEURL + invoiceData.business_logo}
+              alt="Logo"
+              style={{ width: "100px" }}
+            />
+            <div style={{ textAlign: "right" }}>
+              <p>
+                <strong>Date:</strong>{" "}
+                {invoiceData.due_date ? invoiceData.due_date : ""}
+              </p>
+              <p>
+                <strong>Invoice Number:</strong>{" "}
+                {invoiceData.invoice_number ? invoiceData.invoice_number : ""}
+              </p>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+          >
+            <div>
+              <h5>Bill To:</h5>
+              <p>{invioceBookingData?.customer_name}</p>
+              <p>
+                {invioceBookingData?.address} {invioceBookingData?.city}{" "}
+                {invioceBookingData?.zipcode}
+              </p>
+              <p>{invioceBookingData?.mobile}</p>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <h5>Service Provider:</h5>
+              <p>{serviceData?.name} Service</p>
+              <p>{businessData?.street_address}</p>
+              <p>{businessData?.business_no}</p>
+            </div>
+          </div>
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              marginTop: "20px",
+            }}
+          >
+            <thead>
+              <tr>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  Service Name
+                </th>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  Price
+                </th>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  Time (hrs)
+                </th>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  Total
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {serviceData?.name}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  ${serviceData?.price_per_hour}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {invioceBookingData?.start_time} &nbsp;&nbsp;{" "}
+                  {invioceBookingData?.end_time}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  ${serviceData?.price_per_hour}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p style={{ textAlign: "right", marginTop: "20px" }}>
+            <strong>Final Total : ${serviceData?.price_per_hour}</strong>
+          </p>
         </div>
       </Container>
 

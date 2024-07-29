@@ -62,6 +62,8 @@ import EditBusiness from "./SuperAdmin/AllBusiness/EditBusiness";
 import AllCategory from "./SuperAdmin/AllCategory/AllCategory";
 import PerticularCategoryPage from "./Client/ServiceSwiper/PerticularCategoryPage";
 import ClientLogin from "./Login/ClientLogin";
+import Review from "./Admin/Review/Review";
+import PaymentSuccessful from "./Client/Services/PaymentSuccessful";
 
 const Routing = () => {
   const UserRole = localStorage.getItem("role");
@@ -93,6 +95,7 @@ const Routing = () => {
         <Route path="/termscondition" element={<TermsAndConditions />} />
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/refund" element={<Refund />} />
+
         <Route
           path="/PerticularCategory"
           element={<PerticularCategoryPage />}
@@ -123,6 +126,7 @@ const Routing = () => {
         <>
           <Route path="/my-bookings" element={<Mybooking />} />
           <Route path="/clinet-profile" element={<ClientProfile />} />
+          <Route path="/paymnetscuccess/:id" element={<PaymentSuccessful />} />
         </>
       ) : (
         <Route path="*" element={<NotFound />} />
@@ -215,6 +219,14 @@ const Routing = () => {
           element={
             <ProtectedRoute role="Admin">
               <Category />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/review"
+          element={
+            <ProtectedRoute role="Admin">
+              <Review />
             </ProtectedRoute>
           }
         />

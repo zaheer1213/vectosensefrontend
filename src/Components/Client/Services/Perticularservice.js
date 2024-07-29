@@ -161,41 +161,48 @@ const Perticularservice = () => {
   };
 
   const handleBook = async () => {
-    if (selectedSlot?.length === 0) {
-      setError(true);
+    if (!localStorage.getItem("client-token")) {
+      navigate("/clientlogin");
     } else {
-      setError(false);
-      const clientoken = localStorage.getItem("client-token");
-      if (!clientoken) {
-        handleShow();
+      if (selectedSlot?.length === 0) {
+        setError(true);
       } else {
-        const headers = {
-          "x-access-token": localStorage.getItem("client-token"),
-        };
-        try {
-          const response = await axios.get(BASEURL + "/accounts/user-profile", {
-            headers,
-          });
+        setError(false);
+        const clientoken = localStorage.getItem("client-token");
+        if (!clientoken) {
           handleShow();
+        } else {
+          const headers = {
+            "x-access-token": localStorage.getItem("client-token"),
+          };
+          try {
+            const response = await axios.get(
+              BASEURL + "/accounts/user-profile",
+              {
+                headers,
+              }
+            );
+            handleShow();
 
-          if (response && response.data && response.data.data) {
-            const newData = response.data.data;
-            setFormData({
-              name: newData.username,
-              email: newData.email,
-              details: "",
-              phone: newData.mobile_number,
-              address: "",
-              city: "",
-              zipcode: "",
-              note: "",
-              id: newData.id,
-            });
+            if (response && response.data && response.data.data) {
+              const newData = response.data.data;
+              setFormData({
+                name: newData.username,
+                email: newData.email,
+                details: "",
+                phone: newData.mobile_number,
+                address: "",
+                city: "",
+                zipcode: "",
+                note: "",
+                id: newData.id,
+              });
+            }
+          } catch (error) {
+            console.log(error);
           }
-        } catch (error) {
-          console.log(error);
+          // navigate("/invoice");
         }
-        // navigate("/invoice");
       }
     }
   };
@@ -581,7 +588,7 @@ const Perticularservice = () => {
               <Form.Control
                 as="textarea"
                 rows={3}
-                placeholder="Enter address"
+                placeholder="Enter Note"
                 value={formData.details}
                 onChange={handleChange}
               />

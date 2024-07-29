@@ -103,7 +103,7 @@ const Topbar = () => {
             <img
               src="images/VECTOSENSELOGO.png"
               height="90"
-              alt="VECTOSENSE Logo"
+              alt="VECTOSENSE LOGO"
               loading="lazy"
               style={{ marginTop: "2px" }}
             />
