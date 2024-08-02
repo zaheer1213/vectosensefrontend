@@ -8,8 +8,11 @@ import Footer from "../../Footer/Footer";
 import { Col, Container } from "react-bootstrap";
 import ServicesCarousel from "../ServicesCarousel/ServicesCarousel";
 import Pagination from "@mui/material/Pagination";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Services = ({ search }) => {
+const Services = () => {
+  // search
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [allservicedata, setAllservicedata] = useState([]);
@@ -17,6 +20,7 @@ const Services = ({ search }) => {
   const [pageLimit, setPageLimit] = useState(8); // Items per page
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState("");
 
   const getAllServices = async () => {
     const headers = {
@@ -91,11 +95,13 @@ const Services = ({ search }) => {
             <h3 className="mt-3">Services</h3>
             <Col md={4}>
               <div className="flex-grow-1 me-2">
-                {/* <input
+                <FontAwesomeIcon icon={faSearch} className="sicon" />
+                <input
                   type="search"
-                  className="form-control  search-input"
+                  className="form-control servicesearch"
                   placeholder="Enter Service Name..."
-                /> */}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
               </div>
             </Col>
           </div>

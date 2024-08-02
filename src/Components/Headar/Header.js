@@ -25,7 +25,6 @@ function Header({ scrollToAbout, scrollToPrice, FeaturesRef, scrollToHome }) {
       const response = await axios.get(BASEURL + "/accounts/user-profile", {
         headers,
       });
-      console.log(response);
       if (response && response.data && response.data.data) {
         const fullName = response.data.data.username;
         const firstName = fullName.split(" ")[0];
@@ -84,6 +83,8 @@ function Header({ scrollToAbout, scrollToPrice, FeaturesRef, scrollToHome }) {
       navigate("/agent-dashbord");
     } else if (role === "Admin") {
       navigate("/dashbord");
+    } else if (role == "Superadmin") {
+      navigate("/super-dashbord");
     }
   };
   return (
@@ -127,7 +128,7 @@ function Header({ scrollToAbout, scrollToPrice, FeaturesRef, scrollToHome }) {
                 Features
               </Nav.Link>
               <NavLink
-                to="/"
+                to="/home"
                 className="nav-link-custom"
                 style={{ marginTop: "10px" }}
               >

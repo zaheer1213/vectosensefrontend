@@ -109,3 +109,13 @@
 .service-card-main:hover {
   box-shadow: 0px 10px 16px 8px rgba(0, 0, 0, 0.2);
 }
+
+.sicon{
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: #5b549e;
+}
+.servicesearch{
+  padding-left: 30px;
+}

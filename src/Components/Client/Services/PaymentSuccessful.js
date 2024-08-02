@@ -75,7 +75,7 @@ const PaymentSuccessful = () => {
             <div className="mt-5 div-button">
               <Button
                 style={{ background: "#5B549E" }}
-                onClick={() => Navigate("/")}
+                onClick={() => Navigate("/home")}
               >
                 Return To Home
               </Button>

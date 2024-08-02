@@ -39,8 +39,8 @@
 }
 
 .featurescard {
-    height: 160px;
-    width: 160px;
+    height: 150px;
+    width: 150px;
     border-radius: 15px;
     background: white;
     display: flex;

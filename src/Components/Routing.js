@@ -73,7 +73,7 @@ const Routing = () => {
     <Routes>
       {/* Frontside pages */}
       <Route element={<FrontsideLayout />}>
-        <Route path="/partners" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/whychooseus" element={<Whychoosemain />} />
         <Route path="/login" element={<Login />} />
@@ -87,7 +87,7 @@ const Routing = () => {
         <Route path="/journry" element={<Journry />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/serviceprovider" element={<Navigation />} />
-        <Route path="/" element={<Finalhome />} />
+        <Route path="/home" element={<Finalhome />} />
         <Route path="/clientregistration" element={<Register />} />
         <Route path="/clientlogin" element={<ClientLogin />} />
         <Route path="/servicepage" element={<Perticularservice />} />

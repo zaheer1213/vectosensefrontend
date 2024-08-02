@@ -32,6 +32,7 @@ import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 const Register = () => {
   const navigate = useNavigate();
   let [type, setType] = useState("password");
+  let [type1, setType1] = useState("password");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -388,14 +389,14 @@ const Register = () => {
                   <InputGroup>
                     <Form.Control
                       className="inputheight"
-                      type={type}
+                      type={type1}
                       placeholder="Confirm Password"
                       isInvalid={!!errors.confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <InputGroup.Text
                       onClick={() =>
-                        setType(type === "password" ? "text" : "password")
+                        setType1(type1 === "password" ? "text" : "password")
                       }
                       style={{ cursor: "pointer" }}
                     >

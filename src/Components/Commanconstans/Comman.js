@@ -1,6 +1,7 @@
-const BASEURL = "https://vectosense.com:8000";
+// const BASEURL = "https://vectosense.com:8000";
 // const BASEURL = "http://192.168.1.2:8000";
 
+const BASEURL = "https://h3fitclub.com:8000";
 const COUNTRYAPIKRY = "oo0avUUz3jG1N5pecaa/7A==DRKzJBYbolsvsc5u";
 const COUNTRYURL =
   "https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries.json";

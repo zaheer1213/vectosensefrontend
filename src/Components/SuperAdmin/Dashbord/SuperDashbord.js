@@ -19,6 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AgCharts } from "ag-charts-react";
 import axios from "axios";
 import { BASEURL } from "../../Commanconstans/Comman";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const SuperDashbord = () => {
   const [rowData, setRowData] = useState([]);
@@ -27,8 +29,11 @@ const SuperDashbord = () => {
   const [endTime, setEndTime] = useState(0);
   const [dashbordData, setDashbordData] = useState({});
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(15);
+  const [page1, setPage1] = useState(1);
+  const [limit, setLimit] = useState(5);
+  const [limit1, setLimit1] = useState(15);
   const [profitData, setProfitData] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
 
   const getData = () => {
     return [
@@ -55,6 +60,9 @@ const SuperDashbord = () => {
     ],
   });
 
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
   var CanvasJS = CanvasJSReact.CanvasJS;
   var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -173,21 +181,6 @@ const SuperDashbord = () => {
     filter: "agTextColumnFilter",
     floatingFilter: true,
   };
-  const clients = [
-    {
-      name: "QuantumQuest Enterprises",
-      description: "Brings all your news into one place",
-      users: ["user1.png", "user2.png", "user3.png", "+5"],
-      licenseUse: 70,
-    },
-    {
-      name: "StellarWave Solutions",
-      description: "Super lightweight design app",
-      users: ["user4.png", "user5.png", "user6.png", "+8"],
-      licenseUse: 60,
-    },
-    // Add more clients as needed
-  ];
 
   const dashbordCount = async () => {
     const token = localStorage.getItem("superadmin-token");
@@ -208,7 +201,12 @@ const SuperDashbord = () => {
       "x-access-token": token,
     };
     await axios
-      .get(`${BASEURL}/superadmin/dashboard-api3?page=1&limit=10`, { headers })
+      .get(
+        `${BASEURL}/superadmin/dashboard-api3?page=${page1}&limit=${limit1}`,
+        {
+          headers,
+        }
+      )
       .then((responce) => {
         if (responce) {
           setRowData(responce.data.rows);
@@ -223,11 +221,13 @@ const SuperDashbord = () => {
       "x-access-token": token,
     };
     await axios
-      .get(`${BASEURL}/superadmin/dashboard-api`, { headers })
+      .get(`${BASEURL}/superadmin/dashboard-api?page=${page}&limit=${limit}`, {
+        headers,
+      })
       .then((responce) => {
-        console.log(responce.data.data);
         if (responce) {
           setProfitData(responce.data.data);
+          setTotalPages(Math.ceil(responce.data.count / limit));
         }
       })
       .catch((error) => console.log(error));
@@ -253,7 +253,7 @@ const SuperDashbord = () => {
     setData([{ type: "line", dataPoints }]);
 
     setEndTime(new Date());
-  }, []);
+  }, [page, limit, page1, limit1]);
   return (
     <>
       <Container fluid>
@@ -375,7 +375,7 @@ const SuperDashbord = () => {
                     rowSelection="multiple"
                     suppressRowClickSelection={true}
                     pagination={true}
-                    paginationPageSize={limit}
+                    paginationPageSize={limit1}
                     paginationPageSizeSelector={[10, 25, 50]}
                   />
                 </div>
@@ -383,7 +383,7 @@ const SuperDashbord = () => {
             </Row>
             <Row className="mt-5">
               <Col md={6}>
-                <h2>Clients</h2>
+                <h2>Services</h2>
                 <Table responsive="sm" className="clients-table">
                   <thead>
                     <tr>
@@ -396,7 +396,7 @@ const SuperDashbord = () => {
                     {profitData.map((client, index) => (
                       <tr key={index}>
                         <td>
-                          <strong>{client.service_name}</strong>
+                          <strong>{client.name}</strong>
                         </td>
                         <td>
                           <img
@@ -405,11 +405,24 @@ const SuperDashbord = () => {
                             className="user-icon"
                           />
                         </td>
-                        <td>${client.total_revenue}</td>
+                        <td>
+                          ${client.total_revenue ? client.total_revenue : "0"}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </Table>
+                <div className="mt-4 d-flex justify-content-center">
+                  <Stack spacing={2}>
+                    <Pagination
+                      count={totalPages}
+                      page={page}
+                      onChange={handlePageChange}
+                      variant="outlined"
+                      className="custom-pagination"
+                    />
+                  </Stack>
+                </div>
               </Col>
               <Col md={6}>
                 <Chart

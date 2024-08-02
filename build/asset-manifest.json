@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.d9a4c224.css",
-    "main.js": "/static/js/main.e456ba64.js",
+    "main.css": "/static/css/main.1a0594cf.css",
+    "main.js": "/static/js/main.61596446.js",
     "static/js/213.cf0ef9fe.chunk.js": "/static/js/213.cf0ef9fe.chunk.js",
     "static/js/732.c546e06c.chunk.js": "/static/js/732.c546e06c.chunk.js",
     "static/js/453.ebba30ee.chunk.js": "/static/js/453.ebba30ee.chunk.js",
+    "static/media/VECTOSENSELOGO.png": "/static/media/VECTOSENSELOGO.e667d4f74a9ab866a64b.png",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.d9a4c224.css.map": "/static/css/main.d9a4c224.css.map",
-    "main.e456ba64.js.map": "/static/js/main.e456ba64.js.map",
+    "main.1a0594cf.css.map": "/static/css/main.1a0594cf.css.map",
+    "main.61596446.js.map": "/static/js/main.61596446.js.map",
     "213.cf0ef9fe.chunk.js.map": "/static/js/213.cf0ef9fe.chunk.js.map",
     "732.c546e06c.chunk.js.map": "/static/js/732.c546e06c.chunk.js.map",
     "453.ebba30ee.chunk.js.map": "/static/js/453.ebba30ee.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9a4c224.css",
-    "static/js/main.e456ba64.js"
+    "static/css/main.1a0594cf.css",
+    "static/js/main.61596446.js"
   ]
 }

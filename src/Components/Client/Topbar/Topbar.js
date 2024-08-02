@@ -18,6 +18,8 @@ import {
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Topbar.css";
+import logo from "../../../VECTOSENSELOGO.png";
+import Menubaricon from "../../../MenubarIcon.png";
 
 const Topbar = () => {
   const navigate = useNavigate();
@@ -98,10 +100,10 @@ const Topbar = () => {
         <div className="d-flex align-items-center">
           <a
             className="navbar-brand me-2 mb-1 d-flex align-items-center"
-            href="/"
+            href="/home"
           >
             <img
-              src="images/VECTOSENSELOGO.png"
+              src={logo}
               height="90"
               alt="VECTOSENSE LOGO"
               loading="lazy"
@@ -193,7 +195,7 @@ const Topbar = () => {
                   onClick={handleMenuToggle}
                 >
                   <img
-                    src="images/Variant2.png"
+                    src={Menubaricon}
                     style={{ height: "60px", width: "60px" }}
                     alt="Menu Icon"
                   />

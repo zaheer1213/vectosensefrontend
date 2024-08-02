@@ -31,6 +31,7 @@ const Perticularservice = () => {
   const [show, setShow] = useState(false);
   const [serviceID, setServiceID] = useState(null);
   const [error, setError] = useState(false);
+  const [shuffledReviews, setShuffledReviews] = useState([]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -124,25 +125,6 @@ const Perticularservice = () => {
     }
     return color;
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const serviceId = location?.state?.service_id;
-      setServiceID(serviceId);
-      if (serviceId) {
-        await getServices(serviceId); // Assuming getServices is defined somewhere
-        const serviceTimes = await getServiceTimes(selectedDate, serviceId);
-        if (serviceTimes) {
-          setTimeSlots(serviceTimes.available_slots);
-          setBookedSlots(serviceTimes.booked_slots);
-        } else {
-          setTimeSlots([]);
-          setBookedSlots([]);
-        }
-      }
-    };
-    fetchData();
-  }, [location?.state?.service_id, selectedDate]);
 
   const handleDateChange = async (newValue) => {
     setSelectedDate(newValue);
@@ -278,6 +260,77 @@ const Perticularservice = () => {
     setFormData({ ...formData, [id]: value });
     setFormErrors((prevErrors) => ({ ...prevErrors, [id]: false }));
   };
+
+  const reviews = [
+    {
+      id: 1,
+      Username: "Neha Sinha",
+      Designation: "Graphic Designer",
+      Rating: "3",
+      Description:
+        "The service was exceptional. The professionals were on time, friendly, and got the job done efficiently. Highly recommend!",
+    },
+    {
+      id: 2,
+      Username: "Rajesh Verma",
+      Designation: "Software Engineer",
+      Rating: "4",
+      Description:
+        "Had a great experience. The booking process was seamless and the service quality was commendable. Will definitely use it again.",
+    },
+    {
+      id: 3,
+      Username: "Priya Sharma",
+      Designation: "Marketing Specialist",
+      Rating: "3",
+      Description:
+        "Absolutely wonderful! The team was professional and meticulous. They went above and beyond my expectations.",
+    },
+    {
+      id: 4,
+      Username: "Rohit Patel",
+      Designation: "Freelance Writer",
+      Rating: "5",
+      Description:
+        "Service was okay but there was room for improvement. There were some delays, but the job was done satisfactorily.",
+    },
+    {
+      id: 5,
+      Username: "Arjun Nair",
+      Designation: "Teacher",
+      Rating: "3",
+      Description:
+        "Good service. The booking process was easy and the professionals were skilled. Will definitely book again in the future.",
+    },
+  ];
+
+  const shuffleReviews = (reviewsArray) => {
+    for (let i = reviewsArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [reviewsArray[i], reviewsArray[j]] = [reviewsArray[j], reviewsArray[i]];
+    }
+    return reviewsArray;
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const serviceId = location?.state?.service_id;
+      setServiceID(serviceId);
+      if (serviceId) {
+        await getServices(serviceId); // Assuming getServices is defined somewhere
+        const serviceTimes = await getServiceTimes(selectedDate, serviceId);
+        if (serviceTimes) {
+          setTimeSlots(serviceTimes.available_slots);
+          setBookedSlots(serviceTimes.booked_slots);
+        } else {
+          setTimeSlots([]);
+          setBookedSlots([]);
+        }
+      }
+    };
+    fetchData();
+    setShuffledReviews(shuffleReviews([...reviews]));
+  }, [location?.state?.service_id, selectedDate]);
   return (
     <>
       {loading && <Loader />}
@@ -295,109 +348,42 @@ const Perticularservice = () => {
                 <div>
                   <Row className="d-flex justify-content-center">
                     <Col>
-                      <Row>
-                        <Col lg="2" className="d-flex justify-content-center">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-                            className="rounded-circle shadow-1 mb-4 mb-lg-0"
-                            alt="woman avatar"
-                            width="80"
-                            height="80"
-                          />
-                        </Col>
-                        <Col className="text-center text-lg-start mx-auto mx-lg-0">
-                          <h4 className="mb-2">
-                            Lisa Cudrow - Graphic Designer
-                          </h4>
-                          <ul className="list-unstyled starDiv mb-3">
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
+                      <div>
+                        {shuffledReviews.slice(0, 2).map((review) => (
+                          <Row key={review.id} className="mb-4">
+                            <Col
+                              lg="2"
+                              className="d-flex justify-content-center"
+                            >
+                              <img
+                                src="images/user2.png"
+                                className="rounded-circle shadow-1 mb-4 mb-lg-0"
+                                alt="avatar"
+                                width="50"
+                                height="50"
                               />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            </li>
-                          </ul>
-                          <p className="mb-0 pb-3">
-                            Absolutely thrilled with the home cleaning service!
-                            The team was professional, punctual, and left my
-                            home sparkling clean. Highly recommend!.
-                          </p>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="2" className="d-flex justify-content-center">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(3).webp"
-                            className="rounded-circle shadow-1 mb-4 mb-lg-0"
-                            alt="woman avatar"
-                            width="80"
-                            height="80"
-                          />
-                        </Col>
-                        <Col className="text-center text-lg-start mx-auto mx-lg-0">
-                          <h4 className="mb-2">
-                            Lisa Cudrow - Graphic Designer
-                          </h4>
-                          <ul className="list-unstyled starDiv mb-3">
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon
-                                icon={faStarHalfStroke}
-                                className="text-warning"
-                              />
-                            </li>
-                            <li>
-                              <FontAwesomeIcon icon={faStar} />
-                            </li>
-                          </ul>
-                          <p className="mb-0 pb-3">
-                            Absolutely thrilled with the home cleaning service!
-                            The team was professional, punctual, and left my
-                            home sparkling clean. Highly recommend!.
-                          </p>
-                        </Col>
-                      </Row>
+                            </Col>
+                            <Col className="text-center text-lg-start mx-auto mx-lg-0">
+                              <h7 className="mb-2">
+                                {review.Username} - {review.Designation}
+                              </h7>
+                              <ul className="list-unstyled starDiv mb-3">
+                                {[...Array(5)].map((_, i) => (
+                                  <li key={i}>
+                                    <FontAwesomeIcon
+                                      icon={faStar}
+                                      className={
+                                        i < review.Rating ? "text-warning" : ""
+                                      }
+                                    />
+                                  </li>
+                                ))}
+                              </ul>
+                              <p className="mb-0 pb-3 reviewdes">{review.Description}</p>
+                            </Col>
+                          </Row>
+                        ))}
+                      </div>
                     </Col>
                   </Row>
                 </div>

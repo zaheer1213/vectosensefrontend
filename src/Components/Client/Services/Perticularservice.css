@@ -4,7 +4,9 @@
     margin-top: 20px;
     background-color: white;
 }
-
+.reviewdes{
+    font-size: 14px;
+}
 .imagesdiv {
     width: 100%;
     max-width: 100%;

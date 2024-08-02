@@ -17,7 +17,7 @@ const Footer = () => {
     localStorage.removeItem("role");
     localStorage.removeItem("token")
     window.scroll(0, 0);
-    naviate("/partners");
+    naviate("/");
   };
 
   return (
