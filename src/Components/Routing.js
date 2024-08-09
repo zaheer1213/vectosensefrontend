@@ -64,6 +64,8 @@ import PerticularCategoryPage from "./Client/ServiceSwiper/PerticularCategoryPag
 import ClientLogin from "./Login/ClientLogin";
 import Review from "./Admin/Review/Review";
 import PaymentSuccessful from "./Client/Services/PaymentSuccessful";
+import Promotionalservices from "./SuperAdmin/promotionalservices/Promotionalservices";
+import Allpromotionalservices from "./SuperAdmin/promotionalservices/Allpromotionalservices";
 
 const Routing = () => {
   const UserRole = localStorage.getItem("role");
@@ -309,6 +311,22 @@ const Routing = () => {
           element={
             <ProtectedRoute role="Superadmin">
               <AllCategory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/super-promotionalservices"
+          element={
+            <ProtectedRoute role="Superadmin">
+              <Promotionalservices />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/super-allpromotionalservices"
+          element={
+            <ProtectedRoute role="Superadmin">
+              <Allpromotionalservices />
             </ProtectedRoute>
           }
         />

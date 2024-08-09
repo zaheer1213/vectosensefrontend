@@ -393,23 +393,24 @@ const SuperDashbord = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {profitData.map((client, index) => (
-                      <tr key={index}>
-                        <td>
-                          <strong>{client.name}</strong>
-                        </td>
-                        <td>
-                          <img
-                            src={`${BASEURL + client.service_logo}`}
-                            alt="servicelogo"
-                            className="user-icon"
-                          />
-                        </td>
-                        <td>
-                          ${client.total_revenue ? client.total_revenue : "0"}
-                        </td>
-                      </tr>
-                    ))}
+                    {profitData &&
+                      profitData?.map((client, index) => (
+                        <tr key={index}>
+                          <td>
+                            <strong>{client.name}</strong>
+                          </td>
+                          <td>
+                            <img
+                              src={`${BASEURL + client.service_logo}`}
+                              alt="servicelogo"
+                              className="user-icon"
+                            />
+                          </td>
+                          <td>
+                            ${client.total_revenue ? client.total_revenue : "0"}
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </Table>
                 <div className="mt-4 d-flex justify-content-center">

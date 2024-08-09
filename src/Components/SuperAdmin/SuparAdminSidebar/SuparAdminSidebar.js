@@ -106,6 +106,16 @@ function SuparAdminSidebar() {
             />
             <span>All Bookings</span>
           </NavLink>
+          <NavLink
+            to="/super-allpromotionalservices"
+            className="sidebar-item"
+            activeClassName="active"
+          >
+            <FontAwesomeIcon icon={faChartSimple} className="sidebar-icon" />
+            <span>
+              Promotional <br /> Services
+            </span>
+          </NavLink>
           {/* <NavLink
             to="/analytics"
             className="sidebar-item"

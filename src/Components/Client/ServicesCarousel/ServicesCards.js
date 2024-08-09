@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import axios from "axios";
 import { BASEURL } from "../../Commanconstans/Comman";
 import ServicesSliderCards from "./ServicesSliderCards";
+import "./CardComponent.css";
 
 const CardComponent = () => {
   const [pageLimit, setPageLimit] = useState(8); // Items per page
@@ -17,7 +18,7 @@ const CardComponent = () => {
     };
     setLoading(true);
     await axios
-      .get(`${BASEURL}/customer/promotional-services`, {
+      .get(`${BASEURL}/customer/promotional-service`, {
         params: {
           page: currentPage,
           limit: pageLimit,
@@ -71,16 +72,16 @@ const CardComponent = () => {
 
   return (
     <>
-      <Container>
+      <Container >
         <Slider {...settings}>
           {allservicedata &&
             allservicedata.map((cards, index) => {
               const colors = ["#112966", "#B61575", "#33366E"];
               const backgroundColor = colors[index % colors.length];
               return (
-                <div key={index}>
+                <div key={index} className="permostioncards">
                   <div
-                    className="card d-flex flex-row align-items-center"
+                    className="card d-flex flex-row align-items-center "
                     style={{
                       width: "20rem",
                       background: backgroundColor,
@@ -89,19 +90,19 @@ const CardComponent = () => {
                     }}
                   >
                     <div className="card-body">
-                      <h5>{cards.name}</h5>
-                      <span>#{cards.category_name}</span>{" "}
+                      <h5>{cards.title}</h5>
+                      <span>#{cards.promotional_parameter}</span>{" "}
                       <div className="mt-3">
                         <Button className="serviceButoon">Book Now</Button>
                       </div>
                     </div>
                     <img
-                      src={BASEURL + cards.service_logo}
+                      src={BASEURL + cards.banner_image}
                       alt="Card image"
                       style={{
                         width: "50%",
                         height: "100%",
-                        objectFit: "cover",
+                        objectFit: "",
                       }}
                     />
                   </div>
