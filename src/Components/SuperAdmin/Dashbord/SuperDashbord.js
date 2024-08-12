@@ -393,7 +393,7 @@ const SuperDashbord = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {profitData &&
+                    {profitData  &&
                       profitData?.map((client, index) => (
                         <tr key={index}>
                           <td>
