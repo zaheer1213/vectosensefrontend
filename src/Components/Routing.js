@@ -66,6 +66,9 @@ import Review from "./Admin/Review/Review";
 import PaymentSuccessful from "./Client/Services/PaymentSuccessful";
 import Promotionalservices from "./SuperAdmin/promotionalservices/Promotionalservices";
 import Allpromotionalservices from "./SuperAdmin/promotionalservices/Allpromotionalservices";
+import PerticularBuiness from "./SuperAdmin/AllBusiness/PerticularBuiness";
+import PerticularServices from "./SuperAdmin/AllBusiness/PerticularServices";
+import PerticularAgents from "./SuperAdmin/AllBusiness/PerticularAgents";
 
 const Routing = () => {
   const UserRole = localStorage.getItem("role");
@@ -303,6 +306,30 @@ const Routing = () => {
           element={
             <ProtectedRoute role="Superadmin">
               <AllBuiness />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/super-perticularbuiness"
+          element={
+            <ProtectedRoute role="Superadmin">
+              <PerticularBuiness />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/super-perticularservices"
+          element={
+            <ProtectedRoute role="Superadmin">
+              <PerticularServices />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/super-perticularagents"
+          element={
+            <ProtectedRoute role="Superadmin">
+              <PerticularAgents />
             </ProtectedRoute>
           }
         />

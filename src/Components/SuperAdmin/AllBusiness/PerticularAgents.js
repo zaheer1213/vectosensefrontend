@@ -1,34 +1,89 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Container, Modal } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPenToSquare,
+  faTrashCan,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import { BASEURL } from "../../Commanconstans/Comman";
+import { useLocation, useNavigate } from "react-router-dom";
+import Loader from "../../Loader/Loader";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { Pagination, Stack } from "@mui/material";
 
-const AllBuiness = () => {
+const PerticularAgents = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [agentData, setAgentData] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(15);
+  const [totalPages, setTotalPages] = useState(1);
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const [message, setMessage] = useState("");
   const [id, setId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const getAllBuiness = async () => {
+  const columnDefs = [
+    {
+      headerName: "Sr No",
+      field: "sr",
+      sortable: true,
+      filter: true,
+      editable: false,
+    },
+    {
+      headerName: "Agent Name",
+      field: "username",
+      sortable: true,
+      filter: true,
+      editable: true,
+    },
+    {
+      headerName: "Email",
+      field: "email",
+      sortable: true,
+      filter: true,
+      editable: true,
+    },
+    {
+      headerName: "Mobile Number",
+      field: "mobile_number",
+      sortable: true,
+      filter: true,
+      editable: true,
+    },
+    {
+      headerName: "Status",
+      field: "status",
+      sortable: true,
+      filter: true,
+      editable: true,
+      cellRenderer: (params) => (params.value ? "Active" : "Inactive"),
+    },
+  ];
+
+  const defaultColDef = {
+    flex: 1,
+    minWidth: 150,
+    resizable: true,
+  };
+
+  const handleClose = () => setShow(false);
+  const handleClose1 = () => setShow1(false);
+
+  const getAllServices = async (id) => {
     const token = localStorage.getItem("superadmin-token");
     const headers = { "x-access-token": token };
     try {
       setLoading(true);
       const response = await axios.get(
-        `${BASEURL}/superadmin/business?page=${page}&limit=${limit}`,
+        `${BASEURL}/superadmin/business-agents?business_id=${id}&page=${page}&limit=${limit}`,
         { headers }
       );
       const dataWithSr = response.data.rows.map((item, index) => ({
@@ -43,106 +98,30 @@ const AllBuiness = () => {
       console.log(error);
     }
   };
-  const columnDefs = [
-    {
-      headerName: "Sr No",
-      field: "sr",
-      sortable: true,
-      filter: true,
-      editable: false,
-    },
-    {
-      headerName: "Buiness Name",
-      field: "business_name",
-      sortable: true,
-      filter: true,
-      editable: true,
-    },
-    {
-      headerName: "Email",
-      field: "business_email",
-      sortable: true,
-      filter: true,
-      editable: true,
-    },
-    {
-      headerName: "Phone",
-      field: "business_no",
-      sortable: true,
-      filter: true,
-      editable: true,
-    },
-    {
-      headerName: "Status",
-      field: "status",
-      sortable: true,
-      filter: true,
-      editable: true,
-      cellRenderer: (params) => (params.value ? "Active" : "Inactive"),
-    },
-    {
-      headerName: "Action",
-      cellRenderer: (params) => (
-        <>
-          <FontAwesomeIcon
-            icon={faPenToSquare}
-            title="Edit"
-            onClick={() => editAgent(params.data.id)}
-            className="pointer"
-          />
-          &nbsp;&nbsp;
-          <FontAwesomeIcon
-            className="pointer"
-            icon={faTrashCan}
-            title="Delete"
-            onClick={() => handleOpenDelete(params.data.id)}
-            style={{ color: "red" }}
-          />
-        </>
-      ),
-    },
-  ];
-  const handleRowClick = (event) => {
-    const businessId = event.data.id;
-    navigate("/super-perticularbuiness", { state: { buinessID: businessId } });
-    window.scroll(0, 0);
-  };
-  const defaultColDef = {
-    flex: 1,
-    minWidth: 150,
-    resizable: true,
-  };
-  const editAgent = (id) => {
-    navigate("/super-businessedit", { state: { buinessID: id } });
-  };
+
+  const editAgent = (id) => navigate("/super-agentsedit", { state: id });
+
   const handleOpenDelete = (id) => {
     setId(id);
     setShow(true);
     setMessage("Are you sure you want to delete?");
   };
-  const handleClose = () => {
-    setShow(false);
-  };
 
-  const handleClose1 = () => {
-    setShow1(false);
-  };
   const handleDelete = async () => {
     handleClose();
     setLoading(true);
     try {
-      const headers = {
-        "x-access-token": localStorage.getItem("admin-token"),
-      };
+      const token = localStorage.getItem("admin-token");
+      const headers = { "x-access-token": token };
       const response = await axios.delete(
-        `${BASEURL}/superadmin/service/${id}`,
+        `${BASEURL}/service-provider/agent/${id}`,
         { headers }
       );
       setLoading(false);
-      if (response.data) {
-        setMessage("Buiness deleted successfully");
+      if (response) {
+        setMessage("Agent deleted successfully");
         setShow1(true);
-        getAllBuiness();
+        getAllServices();
       }
     } catch (error) {
       setShow(false);
@@ -151,26 +130,32 @@ const AllBuiness = () => {
       setLoading(false);
     }
   };
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
-  };
+
+  const handlePageChange = (event, value) => setPage(value);
+
   useEffect(() => {
-    getAllBuiness();
-  }, []);
+    const agentId = location.state;
+    getAllServices(agentId);
+  }, [page, limit]);
+
   return (
     <>
+      {loading && <Loader />}
       <Container fluid>
         <Container className="container-center" style={{ marginTop: "50px" }}>
-          <div>
-            <h1>All Business </h1>
-            <p>
-              Here you can manage all your Business. Add new agents, edit
-              existing details, or remove Business from your company.
-            </p>
-          </div>
+          <img
+            src="images/Frame 1321316250.png"
+            onClick={() => window.history.back()}
+            className="pointer mb-3"
+          />
+          <Row className="align-items-center my-3 mt-5 w-100">
+            <Col>
+              <h2 className="table-heading">All Agents</h2>
+            </Col>
+          </Row>
           <div
             className="ag-theme-alpine"
-            style={{ height: 600, width: "100%", cursor: "pointer" }}
+            style={{ height: 600, width: "100%" }}
           >
             <AgGridReact
               rowData={agentData}
@@ -179,7 +164,6 @@ const AllBuiness = () => {
               pagination={false}
               paginationPageSize={limit}
               rowSelection="multiple"
-              onRowClicked={handleRowClick}
             />
           </div>
           <div className="mt-4 d-flex justify-content-center">
@@ -196,7 +180,6 @@ const AllBuiness = () => {
         </Container>
       </Container>
 
-      {/* Delete Modal */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Alert</Modal.Title>
@@ -212,7 +195,6 @@ const AllBuiness = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Success Modal */}
       <Modal show={show1} onHide={handleClose1}>
         <Modal.Header closeButton>
           <Modal.Title>Alert</Modal.Title>
@@ -228,4 +210,4 @@ const AllBuiness = () => {
   );
 };
 
-export default AllBuiness;
+export default PerticularAgents;
