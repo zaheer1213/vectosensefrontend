@@ -226,7 +226,7 @@ const SuperDashbord = () => {
       })
       .then((responce) => {
         if (responce) {
-          setProfitData(responce.data.data);
+          setProfitData(responce.data.rows);
           setTotalPages(Math.ceil(responce.data.count / limit));
         }
       })
@@ -270,7 +270,7 @@ const SuperDashbord = () => {
             <Row className="mt-5">
               <Col md={3}>
                 <div className="custome-cards-dashbord bg-filler">
-                  <strong>TOTAL PROFIT</strong>
+                  <strong>TOTAL REVENUE</strong>
                   <div className="ineer-dashbord-div">
                     <h4>${dashbordData?.total_profit}</h4>
                     {/* <div>+ 36%</div> */}

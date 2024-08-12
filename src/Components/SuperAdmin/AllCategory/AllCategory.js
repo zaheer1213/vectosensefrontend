@@ -59,6 +59,25 @@ const AllCategory = () => {
       editable: true,
     },
     {
+      headerName: "Category Image",
+      field: "category_image",
+      sortable: true,
+      filter: true,
+      editable: true,
+      cellRenderer: (params) => (
+        <>
+          {console.log(params)}
+          <div>
+            <img
+              src={BASEURL + params.data.category_image}
+              alt="category_image"
+              style={{ height: "50px", width: "50px" }}
+            />
+          </div>
+        </>
+      ),
+    },
+    {
       headerName: "Action",
       field: "id",
       cellRenderer: (params) => (
