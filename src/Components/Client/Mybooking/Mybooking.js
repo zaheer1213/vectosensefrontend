@@ -12,12 +12,13 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import Footer from "../../Footer/Footer";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { Pagination, Stack } from "@mui/material";
 
 const Mybooking = () => {
   const invoiceRef = useRef();
   const [bookingData, setBookingData] = useState([]);
   const [loder, setLoder] = useState(false);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(15);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [show, setShow] = useState(false);
@@ -77,6 +78,7 @@ const Mybooking = () => {
 
       if (response) {
         const allData = response.data;
+        console.log(allData);
         setInvoiceData(allData.data);
         setServiceData(allData.service_data);
         setBusinessData(allData.business_details);
@@ -90,6 +92,7 @@ const Mybooking = () => {
     }
   };
 
+  const handlePageChange = (event, value) => setPage(value);
   const columnDefs = [
     { headerName: "Sr No", field: "sr", sortable: true, filter: true },
     {
@@ -281,10 +284,21 @@ const Mybooking = () => {
               rowData={bookingData}
               columnDefs={columnDefs}
               defaultColDef={defaultColDef}
-              pagination={true}
+              pagination={false}
               paginationPageSize={limit}
               rowSelection="multiple"
             />
+          </div>
+          <div className="mt-4 d-flex justify-content-center">
+            <Stack spacing={2}>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                variant="outlined"
+                className="custom-pagination"
+              />
+            </Stack>
           </div>
         </div>
 
@@ -311,7 +325,7 @@ const Mybooking = () => {
             }}
           >
             <img
-              src={BASEURL + invoiceData.business_logo}
+              src={`${BASEURL}/${businessData.business_logo}`}
               alt="Logo"
               style={{ width: "100px" }}
             />
@@ -329,9 +343,9 @@ const Mybooking = () => {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
               alignItems: "center",
               marginTop: "10px",
+              justifyContent: "space-between",
             }}
           >
             <div>
@@ -379,20 +393,20 @@ const Mybooking = () => {
                   {serviceData?.name}
                 </td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  ${serviceData?.price_per_hour}
+                  ₹{serviceData?.price_per_hour}
                 </td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                   {invioceBookingData?.start_time} &nbsp;&nbsp;{" "}
                   {invioceBookingData?.end_time}
                 </td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  ${serviceData?.price_per_hour}
+                  ₹{serviceData?.price_per_hour}
                 </td>
               </tr>
             </tbody>
           </table>
           <p style={{ textAlign: "right", marginTop: "20px" }}>
-            <strong>Final Total : ${serviceData?.price_per_hour}</strong>
+            <strong>Final Total : ₹{serviceData?.price_per_hour}</strong>
           </p>
         </div>
       </Container>

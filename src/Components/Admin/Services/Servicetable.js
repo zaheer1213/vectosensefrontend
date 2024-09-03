@@ -45,6 +45,13 @@ const Servicetable = () => {
       editable: true,
     },
     {
+      headerName: "Agent Name",
+      field: "agent",
+      sortable: true,
+      filter: true,
+      editable: true,
+    },
+    {
       headerName: "Status",
       field: "status",
       sortable: true,

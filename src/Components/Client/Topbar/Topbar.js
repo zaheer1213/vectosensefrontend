@@ -126,7 +126,7 @@ const Topbar = () => {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto flex-row align-items-center">
-            <div className="d-flex">
+            {/* <div className="d-flex">
               <span className="navbar-text ms-3">
                 <FontAwesomeIcon icon={faBox} className="me-2" />
                 Orders
@@ -139,7 +139,7 @@ const Topbar = () => {
                 <FontAwesomeIcon icon={faHeart} className="me-2" />
                 Favorites
               </span>
-            </div>
+            </div> */}
             {token && (
               <li className="nav-item me-3 me-lg-1">
                 <a className="nav-link d-flex align-items-center" href="#">

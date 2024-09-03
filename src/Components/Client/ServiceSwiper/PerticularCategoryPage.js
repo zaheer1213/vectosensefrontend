@@ -250,7 +250,7 @@ const PerticularCategoryPage = () => {
                                   marginLeft: "10px",
                                 }}
                               >
-                                $ {row.price_per_hour}
+                                ₹ {row.price_per_hour}
                               </h5>
                             </div>
                             <div>

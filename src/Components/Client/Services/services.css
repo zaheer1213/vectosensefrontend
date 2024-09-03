@@ -9,7 +9,7 @@
 .service-card-main {
   height: 80%;
   border-radius: 10px;
-  border: 0.2px salmon #565656;
+  border: 0.2px salmon #565656 !important;
 }
 
 .card-img-top {
@@ -92,7 +92,8 @@
   .card-body {
     align-items: start;
   }
-  .custom-pagination{
+
+  .custom-pagination {
     margin-top: 30px;
   }
 }
@@ -103,19 +104,43 @@
 }
 
 .card.h-100.pointer:hover {
-  box-shadow: 0px 10px 16px 8px rgba(0, 0, 0, 1);
-}
-
-.service-card-main:hover {
   box-shadow: 0px 10px 16px 8px rgba(0, 0, 0, 0.2);
 }
 
-.sicon{
+/* .service-card-main:hover {
+  box-shadow: 0px 10px 16px 8px rgba(0, 0, 0, 0.2);
+} */
+
+.sicon {
   position: absolute;
   margin-top: 10px;
   margin-left: 10px;
   color: #5b549e;
 }
-.servicesearch{
+
+.servicesearch {
   padding-left: 30px;
+}
+
+
+.cards-title {
+  min-height: 30px;
+  /* Adjust based on the title size */
+}
+
+.cards-text {
+  min-height: 30px;
+  /* Adjust based on the expected description size */
+}
+
+.mdb-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.mdb-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }

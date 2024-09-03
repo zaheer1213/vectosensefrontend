@@ -123,7 +123,7 @@ const Service = () => {
     // if (!closingTime) newErrors.closingTime = "Closing Time is required";
     if (!price) newErrors.price = "Price is required";
     // if (!tags.length) newErrors.tags = "Tags are required";
-    // if (!file) newErrors.file = "Service Image is required";
+    if (!file) newErrors.file = "Service Image is required";
 
     if (days.length === 0) {
       newErrors.days =

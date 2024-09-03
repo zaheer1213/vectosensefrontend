@@ -5,7 +5,8 @@
 .heading-and-table {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     width: 100%;
 }
 
@@ -22,3 +23,30 @@
 h1 {
     text-align: start;
 }
+
+.slotsinfo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    /* Adds space between the columns */
+    padding: 20px;
+    width: 100%;
+    /* Ensures the div takes up the full width */
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+    /* Ensures padding is included in the width */
+}
+
+.slotsinfo>div {
+    flex: 1;
+    /* Makes each child div take up equal space */
+    padding: 10px;
+    /* Adds internal spacing within each column */
+    background-color: #f8f9fa;
+    /* Optional: Add background color to visually separate columns */
+    border-radius: 5px;
+    /* Optional: Adds rounded corners */
+    /* Optional: Adds a subtle shadow for separation */
+}
+

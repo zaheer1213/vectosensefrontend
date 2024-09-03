@@ -69,6 +69,11 @@ import Allpromotionalservices from "./SuperAdmin/promotionalservices/Allpromotio
 import PerticularBuiness from "./SuperAdmin/AllBusiness/PerticularBuiness";
 import PerticularServices from "./SuperAdmin/AllBusiness/PerticularServices";
 import PerticularAgents from "./SuperAdmin/AllBusiness/PerticularAgents";
+import Problemreports from "./SuperAdmin/Problemreports/Problemreports";
+import Forgotpassword from "./Login/Forgotpassword";
+import Resetpassword from "./Login/Resetpassword";
+import Verification from "./Login/Verification";
+import Hero from "./Home/Hero/Hero";
 
 const Routing = () => {
   const UserRole = localStorage.getItem("role");
@@ -78,10 +83,12 @@ const Routing = () => {
     <Routes>
       {/* Frontside pages */}
       <Route element={<FrontsideLayout />}>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Hero />} />
         <Route path="/about" element={<About />} />
         <Route path="/whychooseus" element={<Whychoosemain />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgotpassword" element={<Forgotpassword />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/verification" element={<VerificationForm />} />
         <Route path="/information" element={<Information />} />
@@ -100,6 +107,8 @@ const Routing = () => {
         <Route path="/termscondition" element={<TermsAndConditions />} />
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/refund" element={<Refund />} />
+        <Route path="/resetpassword" element={<Resetpassword />} />
+        <Route path="/verifyotp" element={<Verification />} />
 
         <Route
           path="/PerticularCategory"
@@ -354,6 +363,14 @@ const Routing = () => {
           element={
             <ProtectedRoute role="Superadmin">
               <Allpromotionalservices />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/super-allreports"
+          element={
+            <ProtectedRoute role="Superadmin">
+              <Problemreports />
             </ProtectedRoute>
           }
         />

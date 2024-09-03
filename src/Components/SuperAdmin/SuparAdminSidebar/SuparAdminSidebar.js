@@ -4,16 +4,12 @@ import { FaHome } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
-  faBell,
+  faBook,
   faBusinessTime,
-  faCalendar,
   faChartLine,
   faChartSimple,
-  faClockRotateLeft,
-  faGear,
   faList,
   faMagnifyingGlassChart,
-  faMessage,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 // import "./Sidebar.css";
@@ -175,6 +171,14 @@ function SuparAdminSidebar() {
           >
             <FontAwesomeIcon icon={faList} className="sidebar-icon" />
             <span>Category</span>
+          </NavLink>
+          <NavLink
+            to="/super-allreports"
+            className="sidebar-item"
+            activeClassName="active"
+          >
+            <FontAwesomeIcon icon={faBook} className="sidebar-icon" />
+            <span>All Problem Reports</span>
           </NavLink>
         </div>
       </div>

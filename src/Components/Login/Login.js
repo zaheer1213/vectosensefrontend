@@ -212,6 +212,9 @@ const Login = () => {
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
+                  <div className="d-flex align-items-end justify-content-end pointer">
+                    <p onClick={()=>navigate("/forgotpassword")}>Forgot Password?</p>
+                  </div>
 
                   <div className="d-flex align-items-center justify-content-center">
                     <Button className="cutomebutton" type="submit">

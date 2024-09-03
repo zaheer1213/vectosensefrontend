@@ -5,11 +5,19 @@ import { BASEURL } from "../../Commanconstans/Comman";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Footer/Footer";
-import { Col, Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import ServicesCarousel from "../ServicesCarousel/ServicesCarousel";
 import Pagination from "@mui/material/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBRipple,
+} from "mdb-react-ui-kit";
 
 const Services = () => {
   // search
@@ -106,7 +114,7 @@ const Services = () => {
             </Col>
           </div>
           <hr />
-          {allservicedata && allservicedata.length > 0 ? (
+          {/* {allservicedata && allservicedata.length > 0 ? (
             <>
               <div className="row row-cols-1 row-cols-md-3 g-4 text-start">
                 {allservicedata &&
@@ -156,11 +164,11 @@ const Services = () => {
                               )}
                             </p>
                           </div>
-                          <div className="mt-4">
+                          <div className="mt-5">
                             <h5
                               style={{ fontWeight: "bold", marginLeft: "10px" }}
                             >
-                              $ {row.price_per_hour}
+                              ₹ {row.price_per_hour}
                             </h5>
                           </div>
                           <div>
@@ -195,6 +203,100 @@ const Services = () => {
                 />
               </div>
             </>
+          ) : (
+            <div className="text-center">No Services Found</div>
+          )} */}
+
+          {/* new cards */}
+          {allservicedata && allservicedata.length > 0 ? (
+            <Row>
+              {allservicedata.map((row) => (
+                <Col md={3} className="mb-5" key={row.id}  onClick={() => handleCardClick(row.id)}>
+                  <MDBCard className="h-100 d-flex flex-column pointer">
+                    <MDBRipple
+                      rippleColor="light"
+                      rippleTag="div"
+                      className="bg-image hover-overlay"
+                    >
+                      <MDBCardImage
+                        src={BASEURL + row.service_logo}
+                        fluid
+                        alt="..."
+                        className="card-image"
+                      />
+                      <a>
+                        <div
+                          className="mask"
+                          style={{
+                            backgroundColor: "rgba(251, 251, 251, 0.15)",
+                          }}
+                        ></div>
+                      </a>
+                    </MDBRipple>
+                    <MDBCardBody className="d-flex flex-column">
+                      <span>{row.agent}</span>
+                      <MDBCardTitle>
+                        <h5
+                          className="cards-title text-start mt-3"
+                          style={{ fontSize: "18px", fontWeight: "bold" }}
+                        >
+                          {row.name}
+                        </h5>
+                      </MDBCardTitle>
+                      <MDBCardText className="flex-grow-1">
+                        <p className="cards-text text-start">
+                          {expandedDescriptionId === row.id
+                            ? row.description
+                            : `${row.description.substring(0, 60)}... `}
+                          {row.description.length > 60 && (
+                            <span
+                              onClick={() => toggleDescription(row.id)}
+                              style={{
+                                color: "blue",
+                                cursor: "pointer",
+                                marginLeft: "5px",
+                              }}
+                            >
+                              {expandedDescriptionId === row.id
+                                ? "Read less"
+                                : "Read more"}
+                            </span>
+                          )}
+                        </p>
+                      </MDBCardText>
+                      <h5 style={{ fontWeight: "bold", marginLeft: "10px" }}>
+                        ₹ {row.price_per_hour}
+                      </h5>
+                      <div>
+                        {row?.tags?.map((item, index) => {
+                          const color = generateRandomColor();
+                          return (
+                            <button
+                              key={index}
+                              className="btn custom-btn m-1"
+                              style={{
+                                backgroundColor: color,
+                                color: "white",
+                              }}
+                            >
+                              {item}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </MDBCardBody>
+                  </MDBCard>
+                </Col>
+              ))}
+              <div className="d-flex justify-content-center mb-5">
+                <Pagination
+                  count={totalPages}
+                  page={currentPage}
+                  onChange={handlePageChange}
+                  className="custom-pagination"
+                />
+              </div>
+            </Row>
           ) : (
             <div className="text-center">No Services Found</div>
           )}

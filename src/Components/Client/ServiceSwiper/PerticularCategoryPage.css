@@ -68,3 +68,10 @@
     justify-content: space-between;
     flex-direction: row;
 }
+
+@media (max-width: 932px) {
+    .search-input {
+        padding-left: 0px;
+        width: auto;
+    }
+}

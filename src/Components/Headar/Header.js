@@ -87,6 +87,14 @@ function Header({ scrollToAbout, scrollToPrice, FeaturesRef, scrollToHome }) {
       navigate("/super-dashbord");
     }
   };
+  const moveToClinet = () => {
+    navigate("/home");
+    localStorage.removeItem("admin-token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+    localStorage.removeItem("superadmin-token");
+    localStorage.removeItem("Agent-token");
+  };
   return (
     <>
       <Navbar bg="light" expand="lg" sticky="top">
@@ -117,13 +125,13 @@ function Header({ scrollToAbout, scrollToPrice, FeaturesRef, scrollToHome }) {
               <Nav.Link className="nav-link-custom" onClick={scrollToAbout}>
                 About Us
               </Nav.Link>
-              <Nav.Link
+              {/* <Nav.Link
                 to="/contact"
                 className="nav-link-custom"
                 onClick={scrollToPrice}
               >
                 Pricing
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link to="" className="nav-link-custom" onClick={FeaturesRef}>
                 Features
               </Nav.Link>
@@ -131,6 +139,7 @@ function Header({ scrollToAbout, scrollToPrice, FeaturesRef, scrollToHome }) {
                 to="/home"
                 className="nav-link-custom"
                 style={{ marginTop: "10px" }}
+                onClick={() => moveToClinet()}
               >
                 Book a Service
               </NavLink>

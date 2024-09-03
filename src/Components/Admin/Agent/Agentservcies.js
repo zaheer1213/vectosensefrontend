@@ -150,6 +150,17 @@ const Agentservcies = () => {
                 rowSelection="multiple"
               />
             </div>
+            <div className="mt-4 d-flex justify-content-center">
+              <Stack spacing={2}>
+                <Pagination
+                  count={totalPages}
+                  page={page}
+                  onChange={handlePageChange}
+                  variant="outlined"
+                  className="custom-pagination"
+                />
+              </Stack>
+            </div>
           </div>
         </Container>
       </Container>

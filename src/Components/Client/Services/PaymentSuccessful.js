@@ -61,11 +61,14 @@ const PaymentSuccessful = () => {
               </div>
               <div className="info">
                 <strong>Amount Paid:</strong>
-                <p>${invoiceData?.amount}.00</p>
+                <p>₹{invoiceData?.amount}.00</p>
               </div>
               <div className="info">
                 <strong>Date & Time:</strong>
-                <p>{invoiceData?.date}, {invoiceData?.start_time} to {invoiceData?.end_time}</p>
+                <p>
+                  {invoiceData?.date}, {invoiceData?.start_time} to{" "}
+                  {invoiceData?.end_time}
+                </p>
               </div>
               <div className="info">
                 <strong>Reference Number:</strong>

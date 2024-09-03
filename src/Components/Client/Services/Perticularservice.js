@@ -331,6 +331,7 @@ const Perticularservice = () => {
     fetchData();
     setShuffledReviews(shuffleReviews([...reviews]));
   }, [location?.state?.service_id, selectedDate]);
+
   return (
     <>
       {loading && <Loader />}
@@ -379,7 +380,9 @@ const Perticularservice = () => {
                                   </li>
                                 ))}
                               </ul>
-                              <p className="mb-0 pb-3 reviewdes">{review.Description}</p>
+                              <p className="mb-0 pb-3 reviewdes">
+                                {review.Description}
+                              </p>
                             </Col>
                           </Row>
                         ))}
@@ -415,7 +418,7 @@ const Perticularservice = () => {
               </div>
               <div className="">
                 <div className="mt-3">
-                  <h5>$ {servicedata.price_per_hour}/hr</h5>
+                  <h5>₹ {servicedata.price_per_hour}/hr</h5>
                 </div>
               </div>
               <Row className="mt-5">

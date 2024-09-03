@@ -328,7 +328,11 @@ const Dashbord = () => {
                                 {transaction.payment_status}
                               </Badge>
                             </td>
-                            <td>{transaction.name ? transaction.name : "-"}</td>
+                            <td>
+                              {transaction.service_name
+                                ? transaction.service_name
+                                : "-"}
+                            </td>
                             <td>{transaction.payment_method}</td>
                             <td>${transaction.total_amount}</td>
                             <td>{transaction.due_date}</td>
@@ -406,16 +410,14 @@ const Dashbord = () => {
                                   <tr key={index}>
                                     <td>
                                       <img
-                                        src="images/customer.png"
+                                        src={BASEURL + row.service_logo}
                                         className="logoimg"
                                         alt="Customer Logo"
                                       />
                                     </td>
                                     <td>
                                       <strong>
-                                        {row.service__name
-                                          ? row.service__name
-                                          : "-"}
+                                        {row.name ? row.name : "-"}
                                       </strong>
                                     </td>
                                     <td>

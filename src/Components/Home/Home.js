@@ -7,7 +7,7 @@ import Whychoosemain from "../Whychoose/Whychoosemain";
 import Information from "../Information/Information";
 import Count from "../CountUpAnimation/Count";
 import Features from "../Features/Features";
-import Packageselection from "../Packageselection/Packageselection";
+// import Packageselection from "../Packageselection/Packageselection";
 import Client from "../Clients/Client";
 import Journry from "../Journry/Journry";
 import Footer from "../Footer/Footer";
@@ -119,9 +119,9 @@ const Home = () => {
       <div ref={featuresRef}>
         <Features />
       </div>
-      <div ref={pricingRef}>
+      {/* <div ref={pricingRef}>
         <Packageselection />
-      </div>
+      </div> */}
       <div>
         <Client />
       </div>

@@ -1,0 +1,177 @@
+/* Default styles (for larger screens) */
+.growtext {
+    font-size: 192px;
+    margin-bottom: -30px;
+    line-height: 1;
+}
+
+.buiness-text {
+    font-size: 74.13px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    font-weight: bold;
+}
+
+.text-with {
+    font-size: 36px;
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+.main-hero {
+    padding: 50px 50px;
+}
+
+.hero-sections {
+    background: linear-gradient(135deg,
+            /* Adjusting angle to create a crisscross pattern */
+            /* Darker shade at the start */
+            #481EED 20%,
+            /* Mid-dark shade */
+            #A736F8 60%,
+            /* Lighter shade */
+            #2A0E99 80%
+            /* Darker shade again */
+        );
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sign-up-btn {
+    background-color: #FF4081;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+}
+
+.manimg {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.manimg img {
+    width: 100%;
+    max-width: 800px;
+}
+
+.arrow-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -50px;
+}
+
+.image-container img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .growtext {
+        font-size: 150px;
+    }
+
+    .buiness-text {
+        font-size: 60px;
+    }
+
+    .text-with {
+        font-size: 30px;
+    }
+
+    .manimg img {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    .growtext {
+        font-size: 120px;
+    }
+
+    .buiness-text {
+        font-size: 50px;
+    }
+
+    .text-with {
+        font-size: 28px;
+    }
+
+    .manimg img {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .growtext {
+        font-size: 100px;
+    }
+
+    .buiness-text {
+        font-size: 40px;
+    }
+
+    .text-with {
+        font-size: 24px;
+    }
+
+    .manimg img {
+        max-width: 180px;
+    }
+
+    .main-hero {
+        padding: 30px 30px;
+    }
+
+    .hero-sections {
+        padding: 30px;
+    }
+
+    .sign-up-btn {
+        padding: 8px 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .growtext {
+        font-size: 80px;
+        margin-bottom: 1px;
+    }
+
+    .buiness-text {
+        font-size: 30px;
+    }
+
+    .text-with {
+        font-size: 20px;
+    }
+
+    .manimg img {
+        max-width: 150px;
+    }
+
+    .sign-up-btn {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+    }
+
+    .arrow-img img {
+        max-width: 80px;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+}
